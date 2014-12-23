@@ -1,0 +1,24 @@
+* 
+* No part of this file can be released without the consent of SMIC.
+*
+****************************************************************************************
+* SMIC 0.18um Logic Low Leakage 1P6M(1P5M, 1P4M) 1.8V/5V SPICE model (for HSPICE only) *
+****************************************************************************************
+*
+* Release version    : 1.3
+*
+* Release date       : 06/21/2007
+*
+* Simulation tool    : Synopsys Star-HSPICE version 2005.9
+*
+* MIM capacitor      : mim 
+*   
+* Valid temperature range is from -55C to 125C
+*
+*
+******************************************************************
+*                      MIM Capacitor                             * 
+******************************************************************
+.model mim c
++COX = '9.71E-04+DMIM'         TC1 = -3.48E-05          TREF  = 25
+*

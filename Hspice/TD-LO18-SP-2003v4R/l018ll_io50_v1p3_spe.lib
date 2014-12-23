@@ -1,0 +1,519 @@
+//*Spectre Lib Format
+simulator lang=spectre  insensitive=yes
+
+library l018ll_io50_v1p3
+// * This file contains 1.8V and 5V corner model parameters.
+// * Five corners are supported: TT, FF, SS, SNFP, and FNSP.
+// * This file should be used with the model parameter files 'l018ll_io50_v1p3_spe.mdl', 'l018ll_io50_v1p3_bjt_spe.mdl',
+// * 'l018ll_io50_v1p3_res_spe.mdl' and 'l018ll_io50_v1p3_mim_spe.mdl'.
+// * No part of this file can be released without the consent of SMIC.
+// ********************
+// *  MOS Corner model
+// ********************
+
+section tt
+// *1.8V core NMOS
+parameters dtox_n18ll = 0
+parameters dxl_n18ll = 0
+parameters dxw_n18ll = 0
+parameters dvth_n18ll = 0
+parameters dcj_n18ll = 0
+parameters dcjsw_n18ll = 0
+parameters dcjswg_n18ll = 0
+parameters dcgdo_n18ll = 0
+parameters dcgso_n18ll = 0
+parameters dpvth0_n18ll = 0
+// *1.8V core PMOS
+parameters dtox_p18ll = 0
+parameters dxl_p18ll = 0
+parameters dxw_p18ll = 0
+parameters dvth_p18ll = 0	
+parameters dcj_p18ll = 0
+parameters dcjsw_p18ll = 0
+parameters dcjswg_p18ll = 0	
+parameters dcgdo_p18ll = 0
+parameters dcgso_p18ll = 0
+parameters dpvht0_p18ll = 0
+// *5.0V IO NMOS
+parameters dtox_n50ll = 0
+parameters dxl_n50ll = 0
+parameters dxw_n50ll = 0
+parameters dvth_n50ll = 0
+parameters dcj_n50ll = 0
+parameters dcjsw_n50ll = 0
+parameters dcjswg_n50ll = 0
+parameters dcgdo_n50ll = 0
+parameters dcgso_n50ll = 0
+parameters dpvht0_n50ll = 0
+// *5.0V IO PMOS
+parameters dtox_p50ll = 0
+parameters dxl_p50ll = 0
+parameters dxw_p50ll = 0
+parameters dvth_p50ll = 0	
+parameters dcj_p50ll = 0
+parameters dcjsw_p50ll = 0
+parameters dcjswg_p50ll = 0	
+parameters dcgdo_p50ll = 0
+parameters dcgso_p50ll = 0
+include "l018ll_io50_v1p3_spe.mdl"
+endsection tt
+
+
+section ff
+// *1.8V core NMOS
+parameters dtox_n18ll = -1.1e-10
+parameters dxl_n18ll = -1.25e-8
+parameters dxw_n18ll = 2.2e-8
+parameters dvth_n18ll = -0.05
+parameters dcj_n18ll = -5.45e-5
+parameters dcjsw_n18ll = -4.695e-12
+parameters dcjswg_n18ll = -2.29e-11
+parameters dcgdo_n18ll = 1.840e-11
+parameters dcgso_n18ll = 1.840e-11
+parameters dpvth0_n18ll = -4.00e-16
+// *1.8V core PMOS
+parameters dtox_p18ll = -1.1e-10
+parameters dxl_p18ll = -1.25e-8
+parameters dxw_p18ll = 2.2e-8
+parameters dvth_p18ll = 0.04
+parameters dcj_p18ll = -5.10e-5
+parameters dcjsw_p18ll = -4.24e-12
+parameters dcjswg_p18ll = -2.14e-11
+parameters dcgdo_p18ll = 1.68e-11
+parameters dcgso_p18ll = 1.68e-11
+parameters dpvht0_p18ll = 4.00e-16
+// *5.0V IO NMOS
+parameters dtox_n50ll = -5e-10
+parameters dxl_n50ll = -5.5e-8
+parameters dxw_n50ll = 2.2e-8
+parameters dvth_n50ll = -0.04
+parameters dcj_n50ll = -6.13e-5
+parameters dcjsw_n50ll = -7.9e-12
+parameters dcjswg_n50ll = -1.966e-11
+parameters dcgdo_n50ll = 1.87e-11
+parameters dcgso_n50ll = 1.87e-11
+parameters dpvht0_n50ll = -4e-15
+// *5.0V IO PMOS
+parameters dtox_p50ll = -5e-10
+parameters dxl_p50ll = -5.5e-8
+parameters dxw_p50ll = 2.2e-8
+parameters dvth_p50ll = 0.05	
+parameters dcj_p50ll = -5.786e-5
+parameters dcjsw_p50ll = -5.558e-12
+parameters dcjswg_p50ll = -1.847e-11
+parameters dcgdo_p50ll = 1.715e-11
+parameters dcgso_p50ll = 1.715e-11
+include "l018ll_io50_v1p3_spe.mdl"
+endsection ff
+
+
+section ss
+// *1.8V core NMOS
+parameters dtox_n18ll = 1.1e-10
+parameters dxl_n18ll = 1.25e-8
+parameters dxw_n18ll = -2.2e-8
+parameters dvth_n18ll = 0.05
+parameters dcj_n18ll = 5.45e-5
+parameters dcjsw_n18ll = 4.695e-12
+parameters dcjswg_n18ll = 2.29e-11
+parameters dcgdo_n18ll = -1.840e-11
+parameters dcgso_n18ll = -1.840e-11
+parameters dpvth0_n18ll = 4.00e-16
+// *1.8V core PMOS
+parameters dtox_p18ll = 1.1e-10
+parameters dxl_p18ll = 1.25e-8
+parameters dxw_p18ll = -2.2e-8
+parameters dvth_p18ll = -0.04
+parameters dcj_p18ll = 5.10e-5
+parameters dcjsw_p18ll = 4.24e-12
+parameters dcjswg_p18ll = 2.14e-11
+parameters dcgdo_p18ll = -1.68e-11
+parameters dcgso_p18ll = -1.68e-11
+parameters dpvht0_p18ll = -4.00e-16
+// *5.0V IO NMOS
+parameters dtox_n50ll = 5e-10
+parameters dxl_n50ll = 5.5e-8
+parameters dxw_n50ll = -2.2e-8
+parameters dvth_n50ll = 0.04
+parameters dcj_n50ll = 6.13e-5
+parameters dcjsw_n50ll = 7.9e-12
+parameters dcjswg_n50ll = 1.966e-11
+parameters dcgdo_n50ll = -1.87e-11
+parameters dcgso_n50ll = -1.87e-11
+parameters dpvht0_n50ll = 4e-15
+// *5.0V IO PMOS
+parameters dtox_p50ll = 5e-10
+parameters dxl_p50ll = 5.5e-8
+parameters dxw_p50ll = -2.2e-8
+parameters dvth_p50ll = -0.05
+parameters dcj_p50ll = 5.786e-5
+parameters dcjsw_p50ll = 5.558e-12
+parameters dcjswg_p50ll = 1.847e-11
+parameters dcgdo_p50ll = -1.715e-11
+parameters dcgso_p50ll = -1.715e-11
+include "l018ll_io50_v1p3_spe.mdl"
+endsection ss
+
+
+section fnsp
+// *1.8V core NMOS
+parameters dtox_n18ll = 0
+parameters dxl_n18ll = -1.25e-8
+parameters dxw_n18ll = 2.2e-8
+parameters dvth_n18ll = -0.05
+parameters dcj_n18ll = -5.45e-5
+parameters dcjsw_n18ll = -4.695e-12
+parameters dcjswg_n18ll = -2.29e-11
+parameters dcgdo_n18ll = 0
+parameters dcgso_n18ll = 0
+parameters dpvth0_n18ll = -4.00e-16
+// *1.8V core PMOS
+parameters dtox_p18ll = 0
+parameters dxl_p18ll = 1.25e-8
+parameters dxw_p18ll = -2.2e-8
+parameters dvth_p18ll = -0.04
+parameters dcj_p18ll = 5.10e-5
+parameters dcjsw_p18ll = 4.24e-12
+parameters dcjswg_p18ll = 2.14e-11
+parameters dcgdo_p18ll = 0
+parameters dcgso_p18ll = 0
+parameters dpvht0_p18ll = -4.00e-16
+// *5.0V IO NMOS
+parameters dtox_n50ll = 0
+parameters dxl_n50ll = -5.5e-8
+parameters dxw_n50ll = 2.2e-8
+parameters dvth_n50ll = -0.04
+parameters dcj_n50ll = -6.13e-5
+parameters dcjsw_n50ll = -7.9e-12
+parameters dcjswg_n50ll = -1.966e-11
+parameters dcgdo_n50ll = 0
+parameters dcgso_n50ll = 0
+parameters dpvht0_n50ll = -4e-15
+// *5.0V IO PMOS
+parameters dtox_p50ll = 0
+parameters dxl_p50ll = 5.5e-8
+parameters dxw_p50ll = -2.2e-8
+parameters dvth_p50ll = -0.05
+parameters dcj_p50ll = 5.786e-5
+parameters dcjsw_p50ll = 5.558e-12
+parameters dcjswg_p50ll = 1.847e-11
+parameters dcgdo_p50ll = 0
+parameters dcgso_p50ll = 0
+include "l018ll_io50_v1p3_spe.mdl"
+endsection fnsp
+
+
+section snfp
+// *1.8V core NMOS
+parameters dtox_n18ll = 0
+parameters dxl_n18ll = 1.25e-8
+parameters dxw_n18ll = -2.2e-8
+parameters dvth_n18ll = 0.05
+parameters dcj_n18ll = 5.45e-5
+parameters dcjsw_n18ll = 4.695e-12
+parameters dcjswg_n18ll = 2.29e-11
+parameters dcgdo_n18ll = 0
+parameters dcgso_n18ll = 0
+parameters dpvth0_n18ll = 4.00e-16
+// *1.8V core PMOS
+parameters dtox_p18ll = 0
+parameters dxl_p18ll = -1.25e-8
+parameters dxw_p18ll = 2.2e-8
+parameters dvth_p18ll = 0.04
+parameters dcj_p18ll = -5.10e-5
+parameters dcjsw_p18ll = -4.24e-12
+parameters dcjswg_p18ll = -2.14e-11
+parameters dcgdo_p18ll = 0
+parameters dcgso_p18ll = 0
+parameters dpvht0_p18ll = 4.00e-16
+// *5.0V IO NMOS
+parameters dtox_n50ll = 0
+parameters dxl_n50ll = 5.5e-8
+parameters dxw_n50ll = -2.2e-8
+parameters dvth_n50ll = 0.04
+parameters dcj_n50ll = 6.13e-5
+parameters dcjsw_n50ll = 7.9e-12
+parameters dcjswg_n50ll = 1.966e-11
+parameters dcgdo_n50ll = 0
+parameters dcgso_n50ll = 0
+parameters dpvht0_n50ll = 4e-15
+// *5.0V IO PMOS
+parameters dtox_p50ll = 0
+parameters dxl_p50ll = -5.5e-8
+parameters dxw_p50ll = 2.2e-8
+parameters dvth_p50ll = 0.05	
+parameters dcj_p50ll = -5.786e-5
+parameters dcjsw_p50ll = -5.558e-12
+parameters dcjswg_p50ll = -1.847e-11
+parameters dcgdo_p50ll = 0
+parameters dcgso_p50ll = 0
+include "l018ll_io50_v1p3_spe.mdl"
+endsection snfp
+
+// *******************
+// * BJT Corner model
+// *******************
+
+section bjt_tt
+// *1.8V CORE PNP
+parameters dbf_pnp18a100ll = 0.00
+parameters dis_pnp18a100ll = 0.00
+parameters dnf_pnp18a100ll = 0.00
+parameters dbf_pnp18a25ll = 0.00
+parameters dis_pnp18a25ll = 0.00
+parameters dnf_pnp18a25ll = 0.00
+parameters dbf_pnp18a4ll = 0.00
+parameters dis_pnp18a4ll = 0.00
+parameters dnf_pnp18a4ll = 0.00
+parameters dcje_pnp18a100ll = 0.00
+parameters dcje_pnp18a25ll = 0.00
+parameters dcje_pnp18a4ll = 0.00
+parameters dcjc_pnp18a100ll = 0.00
+parameters dcjc_pnp18a25ll = 0.00
+parameters dcjc_pnp18a4ll = 0.00
+include "l018ll_io50_v1p3_bjt_spe.mdl"
+endsection bjt_tt
+
+
+section bjt_ff
+// *1.8V CORE PNP
+parameters dbf_pnp18a100ll = 4.20e-1
+parameters dis_pnp18a100ll = -1.756e-18
+parameters dnf_pnp18a100ll = 0.008
+parameters dbf_pnp18a25ll = 5.20e-1
+parameters dis_pnp18a25ll = -7.751e-19
+parameters dnf_pnp18a25ll = 0.008
+parameters dbf_pnp18a4ll = 6.90e-1
+parameters dis_pnp18a4ll = -1.950e-19
+parameters dnf_pnp18a4ll = 0.008
+parameters dcjc_pnp18a100ll = -3.25E-15
+parameters dcjc_pnp18a25ll = -1.92E-15
+parameters dcjc_pnp18a4ll = -1.26E-15
+parameters dcje_pnp18a100ll = -5.27E-15
+parameters dcje_pnp18a25ll = -1.36E-15
+parameters dcje_pnp18a4ll = -2.38E-16
+include "l018ll_io50_v1p3_bjt_spe.mdl"
+endsection bjt_ff
+
+
+section bjt_ss
+// *1.8V CORE PNP
+parameters dbf_pnp18a100ll = -4.20e-1
+parameters dis_pnp18a100ll = 1.756e-18
+parameters dnf_pnp18a100ll = -0.008
+parameters dbf_pnp18a25ll = -5.20e-1
+parameters dis_pnp18a25ll = 7.751e-19
+parameters dnf_pnp18a25ll = -0.008
+parameters dbf_pnp18a4ll = -6.90e-1
+parameters dis_pnp18a4ll = 1.950e-19
+parameters dnf_pnp18a4ll = -0.008
+parameters dcjc_pnp18a100ll = 3.25E-15
+parameters dcjc_pnp18a25ll = 1.92E-15
+parameters dcjc_pnp18a4ll = 1.26E-15
+parameters dcje_pnp18a100ll = 5.27E-15
+parameters dcje_pnp18a25ll = 1.36E-15
+parameters dcje_pnp18a4ll = 2.38E-16
+include "l018ll_io50_v1p3_bjt_spe.mdl"
+endsection bjt_ss
+
+// *******************
+// * RES Corner model
+// *******************
+
+section res_tt
+// *Resistor
+parameters drsh_rndif = 0
+parameters drsh_rpdif = 0
+parameters drsh_rnpo = 0
+parameters drsh_rnpo_3t = 0
+parameters drsh_rppo = 0
+parameters drsh_rppo_3t = 0
+parameters drsh_rnwsti = 0
+parameters drsh_rnwaa = 0
+parameters drsh_rndifsab = 0
+parameters drsh_rpdifsab = 0
+parameters drsh_rnposab = 0
+parameters drsh_rnposab_3t = 0
+parameters drsh_rpposab = 0
+parameters drsh_rpposab_3t = 0
+parameters drsh_rm1 = 0
+parameters drsh_rm2 = 0
+parameters drsh_rm3 = 0
+parameters drsh_rm4 = 0
+parameters drsh_rm5 = 0
+parameters drsh_rm6 = 0
+parameters drsh_rpdifsab_nstd = 0
+parameters drsh_rnposab_nstd = 0
+parameters drsh_rnposab_nstd_3t = 0
+parameters drsh_rndifsab_nstd = 0
+parameters drsh_rpposab_nstd = 0
+parameters drsh_rpposab_nstd_3t = 0
+parameters ddw_rndif = 0
+parameters ddw_rpdif = 0
+parameters ddw_rnpo = 0
+parameters ddw_rnpo_3t = 0
+parameters ddw_rppo = 0
+parameters ddw_rppo_3t = 0
+parameters ddw_rnwsti = 0
+parameters ddw_rnwaa = 0
+parameters ddw_rndifsab = 0
+parameters ddw_rpdifsab = 0
+parameters ddw_rnposab = 0
+parameters ddw_rnposab_3t = 0
+parameters ddw_rpposab = 0
+parameters ddw_rpposab_3t = 0
+parameters ddw_rm1 = 0
+parameters ddw_rm2 = 0
+parameters ddw_rm3 = 0
+parameters ddw_rm4 = 0
+parameters ddw_rm5 = 0
+parameters ddw_rm6 = 0
+parameters ddw_rpdifsab_nstd = 0
+parameters ddw_rnposab_nstd = 0
+parameters ddw_rnposab_nstd_3t = 0
+parameters ddw_rndifsab_nstd = 0
+parameters ddw_rpposab_nstd = 0
+parameters ddw_rpposab_nstd_3t = 0
+include "l018ll_io50_v1p3_res_spe.mdl"
+endsection res_tt
+
+
+section res_ff
+// *Resistor
+parameters drsh_rndif = -2.78
+parameters drsh_rpdif = -3.63
+parameters drsh_rnpo = -2.34
+parameters drsh_rnpo_3t = -2.34
+parameters drsh_rppo = -2.88
+parameters drsh_rppo_3t = -2.88
+parameters drsh_rnwsti = -95
+parameters drsh_rnwaa = -101
+parameters drsh_rndifsab = -20.6
+parameters drsh_rpdifsab = -40.1
+parameters drsh_rnposab = -38.1
+parameters drsh_rnposab_3t = -38.1
+parameters drsh_rpposab = -48.7
+parameters drsh_rpposab_3t = -48.7
+parameters drsh_rm1 = -0.023
+parameters drsh_rm2 = -0.023
+parameters drsh_rm3 = -0.023
+parameters drsh_rm4 = -0.023
+parameters drsh_rm5 = -0.023
+parameters drsh_rm6 = -0.009
+parameters drsh_rpdifsab_nstd = -40.1
+parameters drsh_rnposab_nstd = -38.1
+parameters drsh_rnposab_nstd_3t = -38.1
+parameters drsh_rndifsab_nstd = -20.6
+parameters drsh_rpposab_nstd = -48.7
+parameters drsh_rpposab_nstd_3t = -48.7
+parameters ddw_rndif = 0
+parameters ddw_rpdif = 0
+parameters ddw_rnpo = 0
+parameters ddw_rnpo_3t = 0
+parameters ddw_rppo = 0
+parameters ddw_rppo_3t = 0
+parameters ddw_rnwsti = 0
+parameters ddw_rnwaa = 0
+parameters ddw_rndifsab = 0
+parameters ddw_rpdifsab = 0
+parameters ddw_rnposab = 0
+parameters ddw_rnposab_3t = 0
+parameters ddw_rpposab = 0
+parameters ddw_rpposab_3t = 0
+parameters ddw_rm1 = 0
+parameters ddw_rm2 = 0
+parameters ddw_rm3 = 0
+parameters ddw_rm4 = 0
+parameters ddw_rm5 = 0
+parameters ddw_rm6 = 0
+parameters ddw_rpdifsab_nstd = 0
+parameters ddw_rnposab_nstd = 0
+parameters ddw_rnposab_nstd_3t = 0
+parameters ddw_rndifsab_nstd = 0
+parameters ddw_rpposab_nstd = 0
+parameters ddw_rpposab_nstd_3t = 0
+include "l018ll_io50_v1p3_res_spe.mdl"
+endsection res_ff
+
+
+section res_ss
+// *Resistor
+parameters drsh_rndif = 2.22
+parameters drsh_rpdif = 2.37
+parameters drsh_rnpo = 1.66
+parameters drsh_rnpo_3t = 1.66
+parameters drsh_rppo = 2.12
+parameters drsh_rppo_3t = 2.12
+parameters drsh_rnwsti = 169
+parameters drsh_rnwaa = 99
+parameters drsh_rndifsab = 20.5
+parameters drsh_rpdifsab = 40
+parameters drsh_rnposab = 38.1
+parameters drsh_rnposab_3t = 38.1
+parameters drsh_rpposab = 48.6
+parameters drsh_rpposab_3t = 48.6
+parameters drsh_rm1 = 0.023
+parameters drsh_rm2 = 0.023
+parameters drsh_rm3 = 0.023
+parameters drsh_rm4 = 0.023
+parameters drsh_rm5 = 0.023
+parameters drsh_rm6 = 0.009
+parameters drsh_rpdifsab_nstd = 40
+parameters drsh_rnposab_nstd = 38.1
+parameters drsh_rnposab_nstd_3t = 38.1
+parameters drsh_rndifsab_nstd = 20.5
+parameters drsh_rpposab_nstd = 48.6
+parameters drsh_rpposab_nstd_3t = 48.6
+parameters ddw_rndif = 0
+parameters ddw_rpdif = 0
+parameters ddw_rnpo = 0
+parameters ddw_rnpo_3t = 0
+parameters ddw_rppo = 0
+parameters ddw_rppo_3t = 0
+parameters ddw_rnwsti = 0
+parameters ddw_rnwaa = 0
+parameters ddw_rndifsab = 0
+parameters ddw_rpdifsab = 0
+parameters ddw_rnposab = 0
+parameters ddw_rnposab_3t = 0
+parameters ddw_rpposab = 0
+parameters ddw_rpposab_3t = 0
+parameters ddw_rm1 = 0
+parameters ddw_rm2 = 0
+parameters ddw_rm3 = 0
+parameters ddw_rm4 = 0
+parameters ddw_rm5 = 0
+parameters ddw_rm6 = 0
+parameters ddw_rpdifsab_nstd = 0
+parameters ddw_rnposab_nstd = 0
+parameters ddw_rnposab_nstd_3t = 0
+parameters ddw_rndifsab_nstd = 0
+parameters ddw_rpposab_nstd = 0
+parameters ddw_rpposab_nstd_3t = 0
+include "l018ll_io50_v1p3_res_spe.mdl"
+endsection res_ss
+
+/ ******************************
+// * MIM capacitance Corner model
+// ******************************
+
+section mim_tt
+// *MIM
+parameters dmim = 0
+include "l018ll_io50_v1p3_mim_spe.mdl"
+endsection mim_tt
+
+section mim_ff
+// *MIM
+parameters dmim = -2e-4
+include "l018ll_io50_v1p3_mim_spe.mdl"
+endsection mim_ff
+
+section mim_ss
+// *MIM
+parameters dmim = 2e-4
+include "l018ll_io50_v1p3_mim_spe.mdl"
+endsection mim_ss
+
+
+endlibrary l018ll_io50_v1p3

@@ -1,0 +1,299 @@
+* This file contains 1.8V and 5V corner model parameters.
+* Five corners are supported: TT, FF, SS, SNFP, and FNSP.
+* This file should be used with the model parameter files 'l018ll_io50_v1p3_eldo.mdl', 'l018ll_io50_v1p3_bjt_eldo.mdl',
+* 'l018ll_io50_v1p3_res_eldo.mdl' and 'l018ll_io50_v1p3_mim_eldo.mdl' .
+* No part of this file can be released without the consent of SMIC.
+
+********************
+*  MOS Corner model
+********************
+
+.LIB TT
+.PARAM
+*1.8V core NMOS 
++DTOX_N18LL      = 0            DXL_N18LL       = 0            DXW_N18LL       = 0 
++DVTH_N18LL      = 0            DCJ_N18LL       = 0            DCJSW_N18LL     = 0
++DCJSWG_N18LL    = 0            DCGDO_N18LL     = 0            DCGSO_N18LL     = 0
++DPVTH0_N18LL    = 0
+
+*1.8V core PMOS
++DTOX_P18LL      = 0            DXL_P18LL       = 0            DXW_P18LL       = 0 
++DVTH_P18LL      = 0	        DCJ_P18LL       = 0            DCJSW_P18LL     = 0
++DCJSWG_P18LL    = 0	        DCGDO_P18LL     = 0            DCGSO_P18LL     = 0
++DPVHT0_P18LL    = 0
+
+*5.0V IO NMOS 
++DTOX_N50LL      = 0            DXL_N50LL       = 0            DXW_N50LL       = 0 
++DVTH_N50LL      = 0            DCJ_N50LL       = 0            DCJSW_N50LL     = 0
++DCJSWG_N50LL    = 0            DCGDO_N50LL     = 0            DCGSO_N50LL     = 0
++DPVHT0_N50LL    = 0
+
+*5.0V IO PMOS
++DTOX_P50LL      = 0            DXL_P50LL       = 0            DXW_P50LL       = 0 
++DVTH_P50LL      = 0	        DCJ_P50LL       = 0            DCJSW_P50LL     = 0
++DCJSWG_P50LL    = 0	        DCGDO_P50LL     = 0            DCGSO_P50LL     = 0
+
+.INC 'l018ll_io50_v1p3_eldo.mdl' 
+.ENDL  TT
+
+.LIB FF
+.PARAM
+*1.8V core NMOS 
++DTOX_N18LL      = -1.1E-10     DXL_N18LL       = -1.25E-8     DXW_N18LL       = 2.2E-8 
++DVTH_N18LL      = -0.05        DCJ_N18LL       = -5.45E-5     DCJSW_N18LL     = -4.695E-12
++DCJSWG_N18LL    = -2.29E-11    DCGDO_N18LL     = 1.840E-11    DCGSO_N18LL     = 1.840E-11
++DPVTH0_N18LL    = -4.00E-16
+
+*1.8V core PMOS
++DTOX_P18LL      = -1.1E-10     DXL_P18LL       = -1.25E-8     DXW_P18LL       = 2.2E-8 
++DVTH_P18LL      = 0.04         DCJ_P18LL       = -5.10E-5     DCJSW_P18LL     = -4.24E-12
++DCJSWG_P18LL    = -2.14E-11    DCGDO_P18LL     = 1.68E-11     DCGSO_P18LL     = 1.68E-11
++DPVHT0_P18LL    = 4.00E-16
+
+*5.0V IO NMOS  
++DTOX_N50LL      = -5E-10       DXL_N50LL       = -5.5E-8      DXW_N50LL       = 2.2E-8 
++DVTH_N50LL      = -0.04        DCJ_N50LL       = -6.13E-5     DCJSW_N50LL     = -7.9E-12
++DCJSWG_N50LL    = -1.966E-11   DCGDO_N50LL     = 1.87E-11     DCGSO_N50LL     = 1.87E-11
++DPVHT0_N50LL    = -4E-15
+
+*5.0V IO PMOS
++DTOX_P50LL      = -5E-10       DXL_P50LL       = -5.5E-8      DXW_P50LL       = 2.2E-8 
++DVTH_P50LL      = 0.05	        DCJ_P50LL       = -5.786E-5    DCJSW_P50LL     = -5.558E-12
++DCJSWG_P50LL    = -1.847E-11   DCGDO_P50LL     = 1.715E-11    DCGSO_P50LL     = 1.715E-11
+
+.INC 'l018ll_io50_v1p3_eldo.mdl' 
+.ENDL  FF
+
+.LIB SS
+.PARAM
+*1.8V core NMOS 
++DTOX_N18LL      = 1.1E-10      DXL_N18LL       = 1.25E-8      DXW_N18LL       = -2.2E-8 
++DVTH_N18LL      = 0.05         DCJ_N18LL       = 5.45E-5      DCJSW_N18LL     = 4.695E-12
++DCJSWG_N18LL    = 2.29E-11     DCGDO_N18LL     = -1.840E-11   DCGSO_N18LL     = -1.840E-11
++DPVTH0_N18LL    = 4.00E-16
+
+*1.8V core PMOS
++DTOX_P18LL      = 1.1E-10      DXL_P18LL       = 1.25E-8      DXW_P18LL       = -2.2E-8 
++DVTH_P18LL      = -0.04        DCJ_P18LL       = 5.10E-5      DCJSW_P18LL     = 4.24E-12
++DCJSWG_P18LL    = 2.14E-11     DCGDO_P18LL     = -1.68E-11    DCGSO_P18LL     = -1.68E-11
++DPVHT0_P18LL    = -4.00E-16
+
+*5.0V IO NMOS  
++DTOX_N50LL      = 5E-10        DXL_N50LL       = 5.5E-8       DXW_N50LL       = -2.2E-8 
++DVTH_N50LL      = 0.04         DCJ_N50LL       = 6.13E-5      DCJSW_N50LL     = 7.9E-12
++DCJSWG_N50LL    = 1.966E-11    DCGDO_N50LL     = -1.87E-11    DCGSO_N50LL     = -1.87E-11
++DPVHT0_N50LL    = 4E-15
+
+*5.0V IO PMOS
++DTOX_P50LL      = 5E-10        DXL_P50LL       = 5.5E-8       DXW_P50LL       = -2.2E-8 
++DVTH_P50LL      = -0.05        DCJ_P50LL       = 5.786E-5     DCJSW_P50LL     = 5.558E-12
++DCJSWG_P50LL    = 1.847E-11    DCGDO_P50LL     = -1.715E-11   DCGSO_P50LL     = -1.715E-11
+
+.INC 'l018ll_io50_v1p3_eldo.mdl' 
+.ENDL  SS
+
+.LIB FNSP
+.PARAM
+*1.8V core NMOS 
++DTOX_N18LL      = 0            DXL_N18LL       = -1.25E-8     DXW_N18LL       = 2.2E-8 
++DVTH_N18LL      = -0.05        DCJ_N18LL       = -5.45E-5     DCJSW_N18LL     = -4.695E-12
++DCJSWG_N18LL    = -2.29E-11    DCGDO_N18LL     = 0            DCGSO_N18LL     = 0
++DPVTH0_N18LL    = -4.00E-16
+
+*1.8V core PMOS
++DTOX_P18LL      = 0            DXL_P18LL       = 1.25E-8      DXW_P18LL       = -2.2E-8 
++DVTH_P18LL      = -0.04        DCJ_P18LL       = 5.10E-5      DCJSW_P18LL     = 4.24E-12
++DCJSWG_P18LL    = 2.14E-11     DCGDO_P18LL     = 0            DCGSO_P18LL     = 0
++DPVHT0_P18LL    = -4.00E-16
+
+*5.0V IO NMOS  
++DTOX_N50LL      = 0            DXL_N50LL       = -5.5E-8      DXW_N50LL       = 2.2E-8 
++DVTH_N50LL      = -0.04        DCJ_N50LL       = -6.13E-5     DCJSW_N50LL     = -7.9E-12
++DCJSWG_N50LL    = -1.966E-11   DCGDO_N50LL     = 0            DCGSO_N50LL     = 0
++DPVHT0_N50LL    = -4E-15
+
+*5.0V IO PMOS
++DTOX_P50LL      = 0            DXL_P50LL       = 5.5E-8       DXW_P50LL       = -2.2E-8 
++DVTH_P50LL      = -0.05        DCJ_P50LL       = 5.786E-5     DCJSW_P50LL     = 5.558E-12
++DCJSWG_P50LL    = 1.847E-11    DCGDO_P50LL     = 0            DCGSO_P50LL     = 0
+
+.INC 'l018ll_io50_v1p3_eldo.mdl' 
+.ENDL  FNSP
+
+.LIB SNFP
+.PARAM
+*1.8V core NMOS 
++DTOX_N18LL      = 0            DXL_N18LL       = 1.25E-8      DXW_N18LL       = -2.2E-8 
++DVTH_N18LL      = 0.05         DCJ_N18LL       = 5.45E-5      DCJSW_N18LL     = 4.695E-12
++DCJSWG_N18LL    = 2.29E-11     DCGDO_N18LL     = 0            DCGSO_N18LL     = 0
++DPVTH0_N18LL    = 4.00E-16
+
+*1.8V core PMOS
++DTOX_P18LL      = 0            DXL_P18LL       = -1.25E-8     DXW_P18LL       = 2.2E-8 
++DVTH_P18LL      = 0.04         DCJ_P18LL       = -5.10E-5     DCJSW_P18LL     = -4.24E-12
++DCJSWG_P18LL    = -2.14E-11    DCGDO_P18LL     = 0            DCGSO_P18LL     = 0
++DPVHT0_P18LL    = 4.00E-16
+
+*5.0V IO NMOS  
++DTOX_N50LL      = 0            DXL_N50LL       = 5.5E-8       DXW_N50LL       = -2.2E-8 
++DVTH_N50LL      = 0.04         DCJ_N50LL       = 6.13E-5      DCJSW_N50LL     = 7.9E-12
++DCJSWG_N50LL    = 1.966E-11    DCGDO_N50LL     = 0            DCGSO_N50LL     = 0
++DPVHT0_N50LL    = 4E-15
+
+*5.0V IO PMOS
++DTOX_P50LL      = 0            DXL_P50LL       = -5.5E-8      DXW_P50LL       = 2.2E-8 
++DVTH_P50LL      = 0.05	        DCJ_P50LL       = -5.786E-5    DCJSW_P50LL     = -5.558E-12
++DCJSWG_P50LL    = -1.847E-11   DCGDO_P50LL     = 0            DCGSO_P50LL     = 0
+
+.INC 'l018ll_io50_v1p3_eldo.mdl' 
+.ENDL  SNFP
+
+*******************
+* BJT Corner model
+*******************
+
+.LIB BJT_TT
+.PARAM
+*1.8V CORE PNP
++DBF_PNP18A100LL     = 0.00      DIS_PNP18A100LL       = 0.00      DNF_PNP18A100LL       = 0.00
++DBF_PNP18A25LL      = 0.00      DIS_PNP18A25LL        = 0.00      DNF_PNP18A25LL        = 0.00
++DBF_PNP18A4LL       = 0.00      DIS_PNP18A4LL         = 0.00      DNF_PNP18A4LL         = 0.00
++DCJE_PNP18A100LL    = 0.00      DCJE_PNP18A25LL       = 0.00      DCJE_PNP18A4LL        = 0.00
++DCJC_PNP18A100LL    = 0.00      DCJC_PNP18A25LL       = 0.00      DCJC_PNP18A4LL        = 0.00
+
+.INC 'l018ll_io50_v1p3_bjt_eldo.mdl' 
+.ENDL BJT_TT
+
+.LIB BJT_FF
+.PARAM
+*1.8V CORE PNP
++DBF_PNP18A100LL     = 4.20E-1   DIS_PNP18A100LL       = -1.756E-18  DNF_PNP18A100LL       = 0.008
++DBF_PNP18A25LL      = 5.20E-1   DIS_PNP18A25LL        = -7.751E-19  DNF_PNP18A25LL        = 0.008
++DBF_PNP18A4LL       = 6.90E-1   DIS_PNP18A4LL         = -1.950E-19  DNF_PNP18A4LL         = 0.008
++DCJC_PNP18A100LL    = -3.25E-15 DCJC_PNP18A25LL       = -1.92E-15   DCJC_PNP18A4LL        = -1.26E-15
++DCJE_PNP18A100LL    = -5.27E-15 DCJE_PNP18A25LL       = -1.36E-15   DCJE_PNP18A4LL        = -2.38E-16
+
+.INC 'l018ll_io50_v1p3_bjt_eldo.mdl' 
+.ENDL BJT_FF
+
+.LIB BJT_SS
+.PARAM
+*1.8V CORE PNP
++DBF_PNP18A100LL     = -4.20E-1   DIS_PNP18A100LL       = 1.756E-18  DNF_PNP18A100LL       = -0.008
++DBF_PNP18A25LL      = -5.20E-1   DIS_PNP18A25LL        = 7.751E-19  DNF_PNP18A25LL        = -0.008
++DBF_PNP18A4LL       = -6.90E-1   DIS_PNP18A4LL         = 1.950E-19  DNF_PNP18A4LL         = -0.008
++DCJC_PNP18A100LL    = 3.25E-15   DCJC_PNP18A25LL       = 1.92E-15   DCJC_PNP18A4LL        = 1.26E-15
++DCJE_PNP18A100LL    = 5.27E-15   DCJE_PNP18A25LL       = 1.36E-15   DCJE_PNP18A4LL        = 2.38E-16
+
+.INC 'l018ll_io50_v1p3_bjt_eldo.mdl' 
+.ENDL BJT_SS
+
+*******************
+* RES Corner model
+*******************
+
+.LIB RES_TT
+.PARAM
+*Resistor
++DRSH_RNDIF         = 0            DRSH_RPDIF           = 0            DRSH_RNPO          = 0    
++DRSH_RNPO_3T       = 0            DRSH_RPPO            = 0            DRSH_RPPO_3T       = 0     
++DRSH_RNWSTI        = 0            DRSH_RNWAA           = 0            DRSH_RNDIFSAB      = 0            
++DRSH_RPDIFSAB      = 0            DRSH_RNPOSAB         = 0            DRSH_RNPOSAB_3T    = 0
++DRSH_RPPOSAB       = 0            DRSH_RPPOSAB_3T      = 0            DRSH_RM1           = 0            
++DRSH_RM2           = 0            DRSH_RM3             = 0            DRSH_RM4           = 0            
++DRSH_RM5           = 0            DRSH_RM6             = 0            DRSH_RPDIFSAB_NSTD = 0            
++DRSH_RNPOSAB_NSTD  = 0            DRSH_RNPOSAB_NSTD_3T = 0            DRSH_RNDIFSAB_NSTD = 0            
++DRSH_RPPOSAB_NSTD  = 0            DRSH_RPPOSAB_NSTD_3T = 0
++DDW_RNDIF          = 0            DDW_RPDIF            = 0            DDW_RNPO           = 0    
++DDW_RNPO_3T        = 0            DDW_RPPO             = 0            DDW_RPPO_3T        = 0        
++DDW_RNWSTI         = 0            DDW_RNWAA            = 0            DDW_RNDIFSAB       = 0            
++DDW_RPDIFSAB       = 0            DDW_RNPOSAB          = 0            DDW_RNPOSAB_3T     = 0
++DDW_RPPOSAB        = 0            DDW_RPPOSAB_3T       = 0            DDW_RM1            = 0            
++DDW_RM2            = 0            DDW_RM3              = 0            DDW_RM4            = 0            
++DDW_RM5            = 0            DDW_RM6              = 0            DDW_RPDIFSAB_NSTD  = 0            
++DDW_RNPOSAB_NSTD   = 0            DDW_RNPOSAB_NSTD_3T  = 0            DDW_RNDIFSAB_NSTD  = 0            
++DDW_RPPOSAB_NSTD   = 0            DDW_RPPOSAB_NSTD_3T  = 0
+ 
+.INC 'l018ll_io50_v1p3_res_eldo.mdl'
+.ENDL RES_TT
+
+.LIB RES_FF
+.PARAM
+*Resistor
++DRSH_RNDIF         = -2.78        DRSH_RPDIF           = -3.63        DRSH_RNPO          = -2.34   
++DRSH_RNPO_3T       = -2.34        DRSH_RPPO            = -2.88        DRSH_RPPO_3T       = -2.88    
++DRSH_RNWSTI        = -95          DRSH_RNWAA           = -101         DRSH_RNDIFSAB      = -20.6         
++DRSH_RPDIFSAB      = -40.1        DRSH_RNPOSAB         = -38.1        DRSH_RNPOSAB_3T    = -38.1
++DRSH_RPPOSAB       = -48.7        DRSH_RPPOSAB_3T      = -48.7        DRSH_RM1           = -0.023       
++DRSH_RM2           = -0.023       DRSH_RM3             = -0.023       DRSH_RM4           = -0.023       
++DRSH_RM5           = -0.023       DRSH_RM6             = -0.009       DRSH_RPDIFSAB_NSTD = -40.1          
++DRSH_RNPOSAB_NSTD  = -38.1        DRSH_RNPOSAB_NSTD_3T = -38.1        DRSH_RNDIFSAB_NSTD = -20.6         
++DRSH_RPPOSAB_NSTD  = -48.7        DRSH_RPPOSAB_NSTD_3T = -48.7
++DDW_RNDIF          = 0            DDW_RPDIF            = 0            DDW_RNPO           = 0   
++DDW_RNPO_3T        = 0            DDW_RPPO             = 0            DDW_RPPO_3T        = 0        
++DDW_RNWSTI         = 0            DDW_RNWAA            = 0            DDW_RNDIFSAB       = 0            
++DDW_RPDIFSAB       = 0            DDW_RNPOSAB          = 0            DDW_RNPOSAB_3T     = 0
++DDW_RPPOSAB        = 0            DDW_RPPOSAB_3T       = 0            DDW_RM1            = 0            
++DDW_RM2            = 0            DDW_RM3              = 0            DDW_RM4            = 0            
++DDW_RM5            = 0            DDW_RM6              = 0            DDW_RPDIFSAB_NSTD  = 0            
++DDW_RNPOSAB_NSTD   = 0            DDW_RNPOSAB_NSTD_3T  = 0            DDW_RNDIFSAB_NSTD  = 0            
++DDW_RPPOSAB_NSTD   = 0            DDW_RPPOSAB_NSTD_3T  = 0
+
+.INC 'l018ll_io50_v1p3_res_eldo.mdl'
+.ENDL RES_FF
+
+.LIB RES_SS
+.PARAM
+*Resistor
++DRSH_RNDIF         = 2.22         DRSH_RPDIF           = 2.37         DRSH_RNPO          = 1.66    
++DRSH_RNPO_3T       = 1.66         DRSH_RPPO            = 2.12         DRSH_RPPO_3T       = 2.12   
++DRSH_RNWSTI        = 169          DRSH_RNWAA           = 99           DRSH_RNDIFSAB      = 20.5          
++DRSH_RPDIFSAB      = 40           DRSH_RNPOSAB         = 38.1         DRSH_RNPOSAB_3T    = 38.1
++DRSH_RPPOSAB       = 48.6         DRSH_RPPOSAB_3T      = 48.6         DRSH_RM1           = 0.023        
++DRSH_RM2           = 0.023        DRSH_RM3             = 0.023        DRSH_RM4           = 0.023        
++DRSH_RM5           = 0.023        DRSH_RM6             = 0.009        DRSH_RPDIFSAB_NSTD = 40           
++DRSH_RNPOSAB_NSTD  = 38.1         DRSH_RNPOSAB_NSTD_3T = 38.1         DRSH_RNDIFSAB_NSTD = 20.5          
++DRSH_RPPOSAB_NSTD  = 48.6         DRSH_RPPOSAB_NSTD_3T = 48.6
++DDW_RNDIF          = 0            DDW_RPDIF            = 0            DDW_RNPO           = 0    
++DDW_RNPO_3T        = 0            DDW_RPPO             = 0            DDW_RPPO_3T        = 0      
++DDW_RNWSTI         = 0            DDW_RNWAA            = 0            DDW_RNDIFSAB       = 0            
++DDW_RPDIFSAB       = 0            DDW_RNPOSAB          = 0            DDW_RNPOSAB_3T     = 0
++DDW_RPPOSAB        = 0            DDW_RPPOSAB_3T       = 0            DDW_RM1            = 0            
++DDW_RM2            = 0            DDW_RM3              = 0            DDW_RM4            = 0            
++DDW_RM5            = 0            DDW_RM6              = 0            DDW_RPDIFSAB_NSTD  = 0            
++DDW_RNPOSAB_NSTD   = 0            DDW_RNPOSAB_NSTD_3T  = 0            DDW_RNDIFSAB_NSTD  = 0            
++DDW_RPPOSAB_NSTD   = 0            DDW_RPPOSAB_NSTD_3T  = 0
+
+.INC 'l018ll_io50_v1p3_res_eldo.mdl'
+.ENDL RES_SS
+
+******************************
+* MIM capacitance Corner model
+******************************
+
+.LIB MIM_TT
+.PARAM
+*MIM
++DMIM   = 0
+
+.INC 'l018ll_io50_v1p3_mim_eldo.mdl' 
+.ENDL MIM_TT
+
+.LIB MIM_FF
+.PARAM
+*MIM
++DMIM   = -2E-4
+
+.INC 'l018ll_io50_v1p3_mim_eldo.mdl' 
+.ENDL MIM_FF
+
+.LIB MIM_SS
+.PARAM
+*MIM
++DMIM   = 2E-4
+
+.INC 'l018ll_io50_v1p3_mim_eldo.mdl' 
+.ENDL MIM_SS
+
+
+

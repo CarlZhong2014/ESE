@@ -1,0 +1,108 @@
+//*Spectre Model Format
+simulator lang=spectre  insensitive=yes
+
+// *
+// * no part of this file can be released without the consent of smic.
+// *
+// ****************************************************************************************
+// * smic 0.18um logic low leakage 1p6m(1p5m, 1p4m) 1.8v/5v spice model(for spectre only) *
+// ****************************************************************************************
+//
+// * release version    : 1.3
+// *
+// * release date       : 06/21/2007
+// *
+// * simulation tool    : Cadence spectre V6.0.2
+// *
+// * model type         :
+// * pnp bjt            : spectre BJT
+// *
+// * model name         :
+// * pnp bjt 		:
+// *        *------------------------------------------*
+// *        |  p+/nwell/psub bjt type    |    1.8v     |
+// *        |==========================================|
+// *        | emitter area: 10*10 um^2   | pnp18a100ll |
+// *        |------------------------------------------|
+// *        | emitter area: 5*5 um^2     | pnp18a25ll  |
+// *        |------------------------------------------|
+// *        | emitter area: 2*2 um^2     | pnp18a4ll   |
+// *        *------------------------------------------*
+// *
+// *   the valid temperature range is from -40c to 125c
+// *
+// ***********************************************************************************
+// *          1.8v  p+/nwell/psub bipolar model (emitter area=10x10um^2)             *
+// ***********************************************************************************
+// *
+model pnp18a100ll bjt type=pnp
++vaf = 553.93 ikf = 1.90e-03 
++ise = 7.60e-17 ne = 1.5 br = 7.44e-03 
++nr = 1.0 var = 23.0 ikr = 2.09e-03 
++isc = 5.00e-17 nc = 1.5 rb = 30.0 
++irb = 2.50e-03 rbm = 2.0 re = 2.0 
++rc = 11.11 xti = 3.0 eg = 1.16 
++tnom = 25.0 nkf = 0.5 tlev = 0 
++tlevc = 1 xtb = 0.00 trb1 = 0.0025 
++tbf1 = 0.0051 tbf2 = 0.000003 tbr1 = -0.00075838 
++tbr2 = 0.000010152 tikf1 = -0.0045 tikr1 = 0 
++tnf1 = -0.0001 tnf2 = -0.000001 tnr1 = 0 
++vje = 0.805 mje = 0.401 
++vjc = 0.571 mjc = 0.402 
++ctc = 2.51e-3 cte = 8.76e-4 
++tvjc = 2.68e-3 tvje = 1.53e-3 
++is = 7.68e-18+dis_pnp18a100ll 
++bf = 2.7934+dbf_pnp18a100ll 
++nf = 1.0+dnf_pnp18a100ll
++cjc = 6.496E-14+dcjc_pnp18a100ll 
++cje = 1.054E-13+dcje_pnp18a100ll 
+// *
+// ***********************************************************************************
+// *           1.8v  p+/nwell/psub bipolar model (emitter area=5x5um^2)              *
+// ***********************************************************************************
+// *
+model pnp18a25ll bjt type=pnp
++vaf = 553.93 ikf = 1.10e-03 
++ise = 2.03e-17 ne = 1.5 br = 3.05e-03 
++nr = 0.9995 var = 25.0 ikr = 2.09e-03 
++isc = 2.00e-17 nc = 1.5 rb = 42.0 
++irb = 2.50e-03 rbm = 2.0 re = 3.0 
++rc = 11.11 xti = 3.0 eg = 1.16 
++tnom = 25.0 nkf = 0.5 tlev = 0 
++tlevc = 1 xtb = 0.00 tikf1 = -0.004 
++tbf1 = 0.00522 tbf2 = 0.0000047278 tnf1 = -0.0001 
++tbr1 = -0.000837 tbr2 = 0.000010977 tnf2 = -0.000001 
++vje = 0.805 mje = 0.401 
++vjc = 0.571 mjc = 0.402 
++ctc = 2.51e-3 cte = 8.76e-4 
++tvjc = 2.68e-3 tvje = 1.53e-3 
++is = 2.17e-18+dis_pnp18a25ll 
++bf = 2.8218+dbf_pnp18a25ll 
++nf = 1.0+dnf_pnp18a25ll 
++cjc = 3.834E-14+dcjc_pnp18a25ll 
++cje = 2.720E-14+dcje_pnp18a25ll 
+// *
+// ***********************************************************************************
+// *           1.8v  p+/nwell/psub bipolar model (emitter area=2x2um^2)              *
+// ***********************************************************************************
+// *
+model pnp18a4ll bjt type=pnp
++vaf = 553.93 ikf = 4.00e-04 
++ise = 4.74e-18 ne = 1.5 br = 8.85e-04 
++nr = 1.0 var = 20.0 ikr = 2.09e-03 
++isc = 8.00e-18 nc = 1.5 rb = 76.7153 
++irb = 2.50e-03 rbm = 2.0 re = 4.5903 
++rc = 11.11 xti = 3.0 eg = 1.16 
++tnom = 25.0 nkf = 0.5 tlev = 0 
++tlevc = 1 xtb = 0.00 tbf1 = 0.0059054 
++tbf2 = 0.0000060835 tbr1 = -0.00086755 tbr2 = 9.53e-6 
++tikf1 = -0.004 tnf1 = -0.000030626 tnf2 = -0.000001 
++vje = 0.805 mje = 0.401 
++vjc = 0.571 mjc = 0.402 
++ctc = 2.51e-3 cte = 8.76e-4 
++tvjc = 2.68e-3 tvje = 1.53e-3 
++is = 4.63e-19+dis_pnp18a4ll 
++bf = 2.9246+dbf_pnp18a4ll 
++nf = 1.0+dnf_pnp18a4ll 
++cjc = 2.512E-14+dcjc_pnp18a4ll 
++cje = 4.758E-15+dcje_pnp18a4ll

@@ -1,9 +1,9 @@
 * "simulator" "HSPICE" 
 * "version" "A-2008.03-SP1 32-BIT"
 * "format" "HSP"
-* "rundate" "22:20:41 12/21/2014 "
-* "netlist" "c:\lab\vlsi\project\c1\c1.sp "
-* "runtitle" "﻿.protect"
+* "rundate" "11:29:58 12/23/2014 "
+* "netlist" "e:\program\ese\hspice\vlsi\c1\c1.sp "
+* "runtitle" "﻿**c1***"
 * time =    0.            
 * temperature =   25.0000        
 *** BEGIN: Saved Operating Point ***                     
@@ -12,13 +12,14 @@
 .nodeset
 + a =   0.            
 + b =   0.            
-+ out = 961.6439m       
++ out = 954.8394m       
 + vdd =   1.8000        
 + vss =   0.            
-+ x1.bq =   1.8000        
-+ x1.nab =   1.8000        
-+ x1.nabl =   1.7999        
-+ x1.x3.aq =   1.8000        
-+ x1.x3.outq = 436.9902m       
-+ x1.x4.outq =   7.2934n       
++ x1.aq =   0.            
++ x1.bq =   0.            
++ x1.g =   1.8000        
++ x1.p =   1.8000        
++ x1.x4.ab = 447.8335m       
++ x1.x4.outq =   0.            
++ x1.x5.aob =   1.8000        
 ***   END: Saved Operating Point ***                     

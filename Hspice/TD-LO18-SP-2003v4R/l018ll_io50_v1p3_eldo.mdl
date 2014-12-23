@@ -1,0 +1,507 @@
+* 
+* No part of this file can be released without the consent of SMIC.
+*
+****************************************************************************************
+* SMIC 0.18um Logic Low Leakage 1P6M(1P5M, 1P4M) 1.8V/5V SPICE model (for ELDO only) *
+****************************************************************************************
+*
+* Release version    : 1.3
+*
+* Release date       : 06/21/2007
+*
+* Simulation tool    : Mentor Graphics's Eldo v6.6_1.1
+*
+* Model type         :
+*   MOSFET           : ELDO Level 53(BSIM3V3.2)
+*   1/f MOSFET noise : ELDO NLEV  3
+*   Junction Diode   : ELDO Level 3
+* 
+* Model name         :
+*   MOSFET           :
+*        *------------------------------------* 
+*        |     MOSFET type    | 1.8V  | 5.0V  | 
+*        |====================================| 
+*        |        NMOS        | n18ll | n50ll |
+*        *------------------------------------*
+*        |        PMOS        | p18ll | p50ll |
+*        *------------------------------------*
+*
+*   Junction Diode:
+*        *------------------------------------------* 
+*        | Junction Diode type|   1.8V   |   5.0V   |
+*        |==========================================| 
+*        |      N+/PWELL      | ndio18ll | ndio50ll |
+*        |------------------------------------------|
+*        |      P+/NWELL      | pdio18ll | pdio50ll |
+*        |------------------------------------------|
+*        |      NWELL/PSUB    |       nwdioll       |
+*        *------------------------------------------*
+*
+*   The valid temperature range is from -40c to 125c
+* 
+***********************************************************************************
+*                              1.8V CORE NMOS MODEL                               *
+***********************************************************************************
+.model n18ll nmos
++ LEVEL = 53
+*
+* GENERAL PARAMETERS
+*
++LMIN     = 1.5E-7              LMAX     = 1.0E-5              WMIN     = 1.9E-7              
++WMAX     = 1.0E-4              TNOM     = 25.0                VERSION  = 3.2                 
++TOX      = '3.85E-09+DTOX_N18LL' TOXM     = 3.85E-09          XJ       = 2.0000000E-07       
++NCH      = 9.8100000E+18       LLN      = 1.0000000           LWN      = 0.9878437           
++WLN      = 0.9650000           WWN      = 0.9800000           LINT     = 3.3500000E-08       
++LL       = -1.0000000E-15      LW       = -2.9999999E-15      LWL      = 0.00                
++WINT     = 4.7150000E-08       WL       = -1.2500000E-14      WW       = -8.7000000E-15      
++WWL      = 0.00                MOBMOD   = 1                   BINUNIT  = 2                   
++XL       = '0.00+DXL_N18LL'    XW       = '0.00+DXW_N18LL'    DWG      = -8.0000000E-09      
++DWB      = 1.9999999E-09       
+* DIODE PARAMETERS
++ACM      = 12                  LDIF     = 7.00E-08            HDIF     = 2.00E-07            
++RSH      = 7.68                RD       = 0                   RS       = 0                   
++RSC      = 1.4                 RDC      = 1.4                 CALCACM  = 1                   
+*
+* THRESHOLD VOLTAGE PARAMETERS
+*
++VTH0     = '0.630+DVTH_N18LL'  PVTH0    = '-1.00E-15+DPVTH0_N18LL'  K1       = 0.6580000           
++K2       = 2.2000000E-02       PK2      = 3.5000000E-16       K3       = -2.9500000          
++DVT0     = 4.8000000           DVT1     = 0.1923790           DVT2     = 0.3574100           
++LDVT2    = -5.8000000E-08      PDVT2    = -1.000000E-15       DVT0W    = 1.00         
++DVT1W    = 2.5000000E+06       DVT2W    = 0.3500000           NLX      = 1.5800001E-07       
++LNLX     = -6.5000000E-15      W0       = 1.0000000E-08       K3B      = 1.7500000           
+*
+* MOBILITY PARAMETERS
+*
++VSAT     = 9.0500000E+04       PVSAT    = 3.0000000E-10       UA       = -1.1259700E-09      
++UB       = 2.3400001E-18       LUB      = -4.0000000E-26      WUB      = 5.000000E-26       
++PUB      = -9.2447140E-33      UC       = 1.2500000E-10       LUC      = -2.1000000E-18      
++RDSW     = 1.3500000E+02       PRWB     = 0.00                PRWG     = 0.1500000           
++WR       = 1.0000000           U0       = 3.2500000E-02       PU0      = 1.000E-16       
++A0       = 1.8595001           KETA     = 2.3000000E-02       LKETA    = -5.5000000E-09      
++PKETA    = -3.2000000E-16      A1       = 0.00                A2       = 0.9900000           
++AGS      = 0.5000000           B0       = 3.0000000E-09       B1       = 0.00                
+*
+* SUBTHRESHOLD CURRENT PARAMETERS
+*
++VOFF     = -0.1150000          LVOFF    = 2.5000000E-09       WVOFF    = 1.9999999E-09       
++PVOFF    = -4.0000000E-16      NFACTOR  = 0.2000000           LNFACTOR = 2.2000000E-08       
++CIT      = 0.00                CDSC     = 0.00                CDSCB    = 0.00                
++CDSCD    = 0.00                ETA0     = 0.2300000           PETA0    = 2.9999999E-15       
++ETAB     = -0.4100000          DSUB     = 0.5600000           
+*
+* ROUT PARAMETERS
+*
++PCLM     = 0.3000000           LPCLM    = 8.8000000E-08       PPCLM    = 1.0000000E-15       
++PDIBLC1  = 0.3400000           PPDIBLC1 = 6.0000000E-15       PDIBLC2  = 3.0000000E-03       
++WPDIBLC2 = -5.0000000E-10      PDIBLCB  = 1.0000000           DROUT    = 0.5600000           
++PSCBE1   = 2.8000000E+08       PSCBE2   = 1.0000000E-07       PVAG     = 0.00                
++DELTA    = 1.0000000E-02       ALPHA0   = -3.2566100E-08      LALPHA0  = -7.2014690E-14      
++ALPHA1   = 6.5878370           BETA0    = 17.5200000          LBETA0   = -5.8421530E-07      
+*
+* TEMPERATURE EFFECTS PARAMETERS
+*
++KT1      = -0.2197741          KT2      = -3.5462550E-02      AT       = 3.3000000E+04       
++UTE      = -1.4599750          UA1      = 1.2221389E-09       WUA1     = -4.5000000E-17      
++PUA1     = 6.2125720E-25       UB1      = -1.4128000E-18      UC1      = 3.0600002E-11       
++KT1L     = 3.0080380E-09       PRT      = -55.0000000         
+*
+* CAPACITANCE PARAMETERS
+*
++CJ       = '1.09E-03+DCJ_N18LL'    MJ       = 0.389                PB       = 0.77                   
++CJSW     = '9.39E-11+DCJSW_N18LL'  MJSW     = 0.462                PBSW     = 0.921                 
++CJSWG    = '4.58E-10+DCJSWG_N18LL' MJSWG    = 0.462                PBSWG    = 0.921
++TCJ      = 8.42E-04                TCJSW    = 6.69E-04             TCJSWG   = 6.69E-04      
++TPB      = 1.47E-03                TPBSW    = 8.68E-04             TPBSWG   = 8.68E-04
++JS       = 1.55E-07                JSW      = 2.0E-12              NJ       = 1.03 
++XTI      = 3.0                     NQSMOD   = 0                    ELM      = 5
++CGDO     = '3.68E-10+DCGDO_N18LL'  CGSO     = '3.68E-10+DCGSO_N18LL' TLEVC  = 1            
++CAPMOD   = 3                       XPART    = 1                    CF       = 0.00                   
++ACDE     = 0.4                     MOIN     = 21.25                NOFF     = 1.31           
++VOFFCV   = -0.0762                 CGBO     = 0            
++LLC      = 0                       LWC      = 0                    LWLC     = 0
++WLC      = 0                       WWC      = 0                    WWLC     = 0               
++DLC      = 1.00E-08                DWC      = -7.5E-09
++NLEV     = 3                       AF       = 0.88                 KF       = 1.7E-24 
+*
+***********************************************************************************
+*                              1.8V CORE PMOS MODEL                               *
+***********************************************************************************
+*
+*
+* Eldo Param & Comments
+*
++OPTACM=1
+*
+* End of Eldo Param & Comments
+*
+*
+.model p18ll pmos
++ LEVEL = 53
+*
+* GENERAL PARAMETERS
+*
++LMIN     = 1.5E-7              LMAX     = 1.0E-5              WMIN     = 1.9E-7              
++WMAX     = 1.0E-4              TNOM     = 25.0                VERSION  = 3.2              
++TOX      = '3.81E-09+DTOX_P18LL' TOXM     = 3.81E-09          XJ       = 2.3000000E-07       
++NCH      = 4.5700000E+18       LLN      = 0.9800000           LWN      = 0.9850000           
++WLN      = 1.0110000           WWN      = 0.9900000           LINT     = 4.0000000E-09       
++LL       = 1.0200000E-14       LW       = -9.5500000E-17      LWL      = -2.5000000E-24      
++WINT     = 8.0000000E-09       WL       = 5.2100000E-15       WW       = -5.0000000E-16      
++WWL      = -1.9999999E-21      MOBMOD   = 1                   BINUNIT  = 2                   
++XL       = '0.00+DXL_P18LL'    XW       = '0.00+DXW_P18LL'    DWG      = -2.7000000E-08      
++DWB      = 2.5000000E-08       
+* DIODE PARAMETERS
++ACM      = 12                  LDIF     = 7.00E-08            HDIF     = 2.00E-07            
++RSH      = 7.83                RD       = 0                   RS       = 0                   
++RSC      = 1.7                 RDC      = 1.7                 CALCACM  = 1                   
+*
+* THRESHOLD VOLTAGE PARAMETERS
+*
++VTH0     = '-0.63+DVTH_P18LL'  K1       = 0.7290000           LK1      = 2.5000000E-09       
++K2       = 3.3000000E-02       LK2      = -2.9000000E-09      K3       = -2.2000000          
++DVT0     = 0.5550000           DVT1     = 0.1150000           DVT2     = -6.0000000E-02      
++DVT0W    = 0.1200000           DVT1W    = 1.2000000E+06       DVT2W    = 0.1800000           
++NLX      = 2.9999999E-08       LNLX     = -9.0000000E-16      W0       = 1.0000000E-07       
++K3B      = 3.2000000           NGATE    = 7.8900000E+20       PVTH0    = '0.00+DPVHT0_P18LL'
+
+* MOBILITY PARAMETERS
+*
++VSAT     = 8.6000000E+04       PVSAT    = -5.3000000E-10      UA       = 5.8800000E-11       
++LUA      = 6.2500000E-17       UB       = 1.1000000E-18       LUB      = -2.0000000E-26      
++WUB      = 9.0000000E-26       PUB      = -4.5000000E-33      UC       = -6.0000000E-11      
++WUC      = 5.7000000E-17       PUC      = -1.4000000E-24      RDSW     = 8.3000000E+02       
++PRWB     = 0.00                PRWG     = 0.00                WR       = 1.0000000           
++U0       = 8.0700000E-03       LU0      = -9.7663010E-11      WU0      = 3.8000000E-10       
++PU0      = -9.8000000E-18      A0       = 1.0000000           KETA     = 2.9999999E-02       
++LKETA    = -8.0000000E-09      PKETA    = 4.0000000E-16       A1       = 0.00                
++A2       = 0.9900000           AGS      = 0.00                B0       = 2.8000001E-08       
++B1       = 0.00                
+*
+* SUBTHRESHOLD CURRENT PARAMETERS
+*
++VOFF     = -0.1100000          LVOFF    = -1.0000000E-09      WVOFF    = 7.3000000E-09       
++NFACTOR  = 0.3000000           LNFACTOR = 2.6000000E-08       CIT      = 0.00                
++CDSC     = 0.00                CDSCB    = 0.00                CDSCD    = 0.00                
++ETA0     = 1.2000000E-02       PETA0    = 5.0000000E-16       ETAB     = -4.0000000E-02      
++DSUB     = 0.5600000           
+*
+* ROUT PARAMETERS
+*
++PCLM     = 0.6000000           PDIBLC1  = 1.7999999E-02       PDIBLC2  = 5.0000000E-04       
++PDIBLCB  = 0.00                DROUT    = 0.5600000           PSCBE1   = 2.0000000E+08       
++PSCBE2   = 1.0000000E-08       PVAG     = 0.00                DELTA    = 1.0000000E-02       
++ALPHA0   = 6.3845700E-06       ALPHA1   = 76.0000000          LALPHA1  = -1.2904773E-05      
++BETA0    = 29.9913810          LBETA0   = -8.7270800E-07      
+*
+* TEMPERATURE EFFECTS PARAMETERS
+*
++KT1      = -0.2443267          LKT1     = 3.0000000E-09       PKT1     = -7.0000000E-16      
++KT2      = -3.5700800E-02      LKT2     = 9.0000000E-10       PKT2     = -6.5331750E-16      
++AT       = 2.6000000E+04       LAT      = -1.4000000E-03      PAT      = -2.0000000E-10      
++UTE      = -1.3000000          LUTE     = 1.4999999E-08       UA1      = 5.5962600E-10       
++WUA1     = 1.2000000E-16       PUA1     = 7.8000000E-24       UB1      = -1.9499999E-18      
++UC1      = 8.1000000E-12       KT1L     = -4.1114100E-09      PRT      = 52.7500000          
+*
+* CAPACITANCE PARAMETERS
+*
++CJ       = '0.00102+DCJ_P18LL'     MJ       = 0.401                 PB       = 0.805                   
++CJSW     = '8.48E-11+DCJSW_P18LL'  MJSW     = 0.45                  PBSW     = 0.9               
++CJSWG    = '4.28E-10+DCJSWG_P18LL' MJSWG    = 0.45                  PBSWG    = 0.9      
++TPB      = 0.00153                 TPBSW    = 0.00117               TPBSWG   = 0.00117
++TCJ      = 0.000876                TCJSW    = 0.000745              TCJSWG   = 0.000745
++JS       = 9.95E-08                JSW      = 1.0E-12               NJ       = 1.03   
++XTI      = 3.0                     NQSMOD   = 0                     ELM      = 5 
++CGDO     = '3.35E-10+DCGDO_P18LL'  CGSO     = '3.35E-10+DCGSO_P18LL'  TLEVC  = 1            
++CAPMOD   = 3                       XPART    = 1                     CF       = 0.00                                    
++ACDE     = 1.368913                MOIN     = 11.1                  NOFF     = 1.41             
++VOFFCV   = -0.036                  CGBO     = 0 
++LLC      = 0                       LWC      = 0                     LWLC     = 0
++WLC      = 0                       WWC      = 0                     WWLC     = 0               
++DLC      = 1.00E-08                DWC      = -7.5E-09
++NLEV     = 3                       AF       = 1.16                  KF       = 2.8E-23  
+*  
+***********************************************************************************
+*                               5.0V IO NMOS MODEL                                *
+***********************************************************************************
+*
+*
+* Eldo Param & Comments
+*
++OPTACM=1
+*
+* End of Eldo Param & Comments
+*
+*
+.model n50ll nmos
++ LEVEL = 53
+*
+* GENERAL PARAMETERS
+*
++LMIN     = 4.8E-7                LMAX     = 1.0E-5              WMIN     = 2.0E-7              
++WMAX     = 1.0E-4                TNOM     = 25.0                VERSION  = 3.2                 
++TOX      = '1.19E-08+DTOX_N50LL' TOXM     = 1.19E-08            
++XJ       = 2.0000000E-07         NCH      = 1.4300000E+17       LLN      = 1.0000000           
++LWN      = 1.0000000             WLN      = 0.9600000           WWN      = 0.9600000           
++LINT     = 1.1650000E-07         LL       = -2.1000000E-14      LW       = 0.00                
++LWL      = 0.00                  WINT     = 0.00                WL       = -1.2958000E-14      
++WW       = -1.1800000E-14        WWL      = -7.0000000E-22      MOBMOD   = 1                   
++BINUNIT  = 2                     XL       = '0.00+DXL_N50LL'    XW       = '0.00+DXW_N50LL'                                
++DWG      = 0.00                  DWB      = 1.0000000E-08       
+* DIODE PARAMETERS
++ACM      = 12                    LDIF     = 9.00E-08            HDIF     = 1.80E-07            
++RSH      = 7.08                  RD       = 0                   RS       = 0                   
++RSC      = 1.15                  RDC      = 1.15                CALCACM  = 1                   
+*
+* THRESHOLD VOLTAGE PARAMETERS
+*
++VTH0     = '0.7240000+DVTH_N50LL' PVTH0    = '-1.2000000E-14+DPVHT0_N50LL' K1       = 0.9700000           
++PK1      = -2.5000000E-15         K2       = -1.5000000E-02                K3       = -4.4500000          
++DVT0     = 7.4600000              DVT1     = 0.8050000                     DVT2     = 0.00                
++DVT0W    = 3.5800000E-02          DVT1W    = 6.2467000E+04                 DVT2W    = 0.00                
++NLX      = 1.9800000E-07          W0       = 0.00                          K3B      = 2.4000001                  
+*
+* MOBILITY PARAMETERS
+*
++VSAT     = 7.7500000E+04       PVSAT    = -1.4500000E-10      UA       = -3.6500000E-10      
++WUA      = 4.9000000E-16       UB       = 2.6000001E-18       LUB      = -1.1200001E-25      
++WUB      = -6.2900000E-25      PUB      = -6.1000000E-32      UC       = 8.3758510E-11       
++PUC      = -1.0000000E-23      RDSW     = 4.5800000E+02       PRWB     = 0.00                
++PRWG     = 2.0000000E-02       WR       = 1.0000000           U0       = 4.4150000E-02       
++A0       = 0.9600000           WA0      = -8.0000000E-08      PA0      = 5.0000000E-14       
++KETA     = -1.5000000E-03      A1       = 0.00                A2       = 0.9900000           
++AGS      = 0.1500000           B0       = 0.00                B1       = 0.00                
+*
+* SUBTHRESHOLD CURRENT PARAMETERS
+*
++VOFF     = -0.1300000          NFACTOR  = 0.9000000           CIT      = 8.0000000E-04       
++CDSC     = 0.00                CDSCB    = 0.00                CDSCD    = 0.00                
++ETA0     = 1.0000000E-02       ETAB     = -4.0000000E-02      DSUB     = 0.5600000           
+*
+* ROUT PARAMETERS
+*
++PCLM     = 1.1000000           PPCLM    = 7.0000000E-14       PDIBLC1  = 0.1200000           
++PDIBLC2  = 1.8000001E-03       PDIBLCB  = 0.3000000           DROUT    = 0.5600000           
++PSCBE1   = 4.2000000E+08       PSCBE2   = 1.0000000E-07       PVAG     = 0.00                
++DELTA    = 1.0000000E-02       ALPHA0   = 3.8000000E-07       ALPHA1   = 5.3800000           
++BETA0    = 26.9200000          LBETA0   = -1.4000000E-07      
+*
+* TEMPERATURE EFFECTS PARAMETERS
+*
++KT1      = -0.4491000          WKT1     = 2.6786964E-08       PKT1     = 1.5700000E-14       
++KT2      = -7.3600000E-02      PKT2     = 3.8500000E-15       AT       = 2.4200000E+04       
++PAT      = -1.1800000E-09      UTE      = -1.3564000          LUTE     = 1.5600000E-07       
++WUTE     = 6.2000000E-08       PUTE     = -6.5000000E-14      UA1      = 3.4832000E-09       
++LUA1     = 4.3079160E-16       PUA1     = -8.2500000E-23      UB1      = -5.1387000E-18      
++UC1      = -6.5268150E-11      KT1L     = -1.0703000E-08      PRT      = 0.00                
+*
+* CAPACITANCE PARAMETERS
+*
++CJ       = '1.226E-03+DCJ_N50LL'    MJ       = 0.33                     PB       = 0.744                   
++CJSW     = '1.5795E-10+DCJSW_N50LL' MJSW     = 0.344                    PBSW     = 0.819                 
++CJSWG    = '3.931E-10+DCJSWG_N50LL' MJSWG    = 0.385                    PBSWG    = 0.75                 
++TPB      = 1.60E-03                 TPBSW    = 1.67E-03                 TPBSWG   = 1.69E-03            
++TCJ      = 8.60E-04                 TCJSW    = 1.80E-04                 TCJSWG   = 1.20E-03                   
++JS       = 2.1986E-07               JSW      = 2.72E-12                 NJ       = 0.9887                 
++XTI      = 3.0                      NQSMOD   = 0                        ELM      = 5  
++CGDO     = '3.74E-10+DCGDO_N50LL'   CGSO     = '3.74E-10+DCGSO_N50LL'   CGBO     = 0.00            
++CAPMOD   = 3                        XPART    = 1                        CF       = 0.00                                   
++DLC      = 0                        DWC      = 0                        TLEVC    = 1
++LLC      = 0                        LWC      = 0                        WLC      = 0        
++WWC      = 0                        LWLC     = 0                        WWLC     = 0        
++ACDE     = 0.41                     MOIN     = 10.2                     NOFF     = 1.584    
++VOFFCV   = -0.0714
++NLEV     = 3                        AF       = 0.88                     KF       = 3.07E-24
+*  
+***********************************************************************************
+*                               5.0V IO PMOS MODEL                                *
+***********************************************************************************
+*
+*
+* Eldo Param & Comments
+*
++OPTACM=1
+*
+* End of Eldo Param & Comments
+*
+*
+.model p50ll pmos
++ LEVEL = 53
+*
+* GENERAL PARAMETERS
+*
++LMIN     = 4.8E-7                LMAX     = 1.0E-5              WMIN     = 2.0E-7              
++WMAX     = 1.0E-4                TNOM     = 25.0                VERSION  = 3.2                 
++TOX      = '1.25E-08+DTOX_P50LL' TOXM     = 1.25E-08            
++XJ       = 2.5000000E-07         NCH      = 2.6900000E+17       LLN      = 1.0000000           
++LWN      = 1.0000000             WLN      = 0.9600000           WWN      = 1.0500000           
++LINT     = 2.5649999E-08         LL       = 1.9819001E-14       LW       = 0.00                
++LWL      = 0.00                  WINT     = 0.00                WL       = 1.5700000E-14       
++WW       = 0.00                  WWL      = 0.00                MOBMOD   = 1                   
++BINUNIT  = 2                     XL       = '0.00+DXL_P50LL'    XW       = '0.00+DXW_P50LL'                                 
++DWG      = 0.00                  DWB      = 4.8800020E-09       
+* DIODE PARAMETERS
++ACM      = 12                    LDIF     = 9.00E-08            HDIF     = 1.80E-07            
++RSH      = 7.83                  RD       = 0                   RS       = 0                   
++RSC      = 0.5                   RDC      = 0.5                 CALCACM  = 1                   
+*
+* THRESHOLD VOLTAGE PARAMETERS
+*
++VTH0     = '-0.8340000+DVTH_P50LL' PVTH0    = -1.5000000E-15      K1       = 0.9860000           
++PK1      = 8.5000000E-16           K2       = 6.2600000E-02       K3       = -4.4500000          
++DVT0     = 2.8982000               DVT1     = 0.6000000           DVT2     = 0.00                
++DVT0W    = 0.2607970               DVT1W    = 1.5700000E+05       DVT2W    = 0.00                
++NLX      = 9.5000000E-08           W0       = 2.7959001E-07       K3B      = 3.0999999           
++NGATE    = 2.2999999E+20       
+*
+* MOBILITY PARAMETERS
+*
++VSAT     = 8.8000000E+04       UA       = 2.2669999E-09       WUA      = -4.0000000E-16      
++PUA      = -4.2300000E-23      UB       = -2.5099999E-20      UC       = -7.5661700E-11      
++PUC      = -8.0000000E-24      RDSW     = 1.2500000E+03       PRWB     = 0.00                
++PRWG     = 5.1392830E-03       WR       = 1.0000000           U0       = 1.5000000E-02       
++A0       = 1.0000000           PA0      = -2.0000000E-14      KETA     = -5.0000000E-03      
++A1       = 0.00                A2       = 0.9900000           AGS      = 6.5500000E-02       
++B0       = 0.00                B1       = 0.00                
+*
+* SUBTHRESHOLD CURRENT PARAMETERS
+*
++VOFF     = -0.1350000          NFACTOR  = 1.0700001           CIT      = -1.9999997E-04      
++CDSC     = 3.4500000E-04       CDSCB    = 0.00                CDSCD    = 0.00                
++ETA0     = 4.0000000E-02       PETA0    = -2.0000000E-15      ETAB     = -4.0000000E-02      
++DSUB     = 0.5600000           
+*
+* ROUT PARAMETERS
+*
++PCLM     = 1.0000000           PPCLM    = 4.0000000E-14       PDIBLC1  = 2.0000000E-02       
++PDIBLC2  = 1.0000000E-03       PDIBLCB  = 0.00                DROUT    = 0.5600000           
++PSCBE1   = 3.1000000E+08       PSCBE2   = 1.0000000E-06       PVAG     = 0.00                
++DELTA    = 1.0000000E-02       ALPHA0   = 1.2500000E-07       ALPHA1   = 1.2600000           
++BETA0    = 25.0000000          
+*
+* TEMPERATURE EFFECTS PARAMETERS
+*
++KT1      = -0.3979000          WKT1     = 2.4400000E-08       PKT1     = -6.5800000E-15      
++KT2      = -6.6400000E-02      AT       = -2.8000000E+04      PAT      = 1.9999981E-10       
++UTE      = -1.3770000          UA1      = -8.9800000E-10      LUA1     = 4.0000000E-17       
++PUA1     = 4.3400000E-23       UB1      = -1.4000000E-18      WUB1     = 5.3600000E-25       
++UC1      = 0.00                PUC1     = 1.6000000E-23       KT1L     = -1.3200000E-08      
++PRT      = 0.00                
+*
+* CAPACITANCE PARAMETERS
+*
++CJ       = '1.1571E-03+DCJ_P50LL'   MJ       = 0.356                    PB       = 0.781                   
++CJSW     = '1.1116E-10+DCJSW_P50LL' MJSW     = 0.264                    PBSW     = 0.736                 
++CJSWG    = '3.694E-10+DCJSWG_P50LL' MJSWG    = 0.36                     PBSWG    = 0.71                 
++TPB      = 1.60E-03                 TPBSW    = 1.40E-03                 TPBSWG   = 1.40E-03            
++TCJ      = 9.20E-04                 TCJSW    = 4.20E-04                 TCJSWG   = 8.50E-04                   
++JS       = 2.685E-07                JSW      = 1.43E-12                 NJ       = 1.0235                 
++XTI      = 3.0                      NQSMOD   = 0                        ELM      = 5
++CGDO     = '3.43E-10+DCGDO_P50LL'   CGSO     = '3.43E-10+DCGSO_P50LL'   CGBO     = 0.00         
++CAPMOD   = 3                        XPART    = 1                        CF       = 0.00                                                     
++DLC      = 0                        DWC      = 0                        TLEVC    = 1   
++LLC      = 0                        LWC      = 0                        WLC      = 0     
++WWC      = 0                        LWLC     = 0                        WWLC     = 0     
++ACDE     = 0.74                     MOIN     = 16.25                    NOFF     = 1.612 
++VOFFCV   = -0.0344    
++NLEV     = 3                        AF       = 1.06                     KF       = 5.03E-23 
+*
+***********************************************************************************
+*                            1.8V N+/PWELL DIODE MODEL                            *
+***********************************************************************************
+*
+*
+* Eldo Param & Comments
+*
++OPTACM=1
+*
+* End of Eldo Param & Comments
+*
+*
+.model ndio18ll d
++ LEVEL = 1  SCALEV=3  JS = 1.55E-07  JSW = 1E-15
++N        = 1.0079              RS       = 8.60E-09            IK       = 1.47E+05            
++IKR      = 2.78E+05            BV       = 11.0                IBV      = 277.78              
++TRS      = 1.51E-03            EG       = 1.16                TREF     = 25.0                
++XTI      = 3.0                 TLEV     = 1                   TLEVC    = 1
++CJ       = 0.00109             MJ       = 0.389               PB       = 0.77                
++CJSW     = 9.39E-11            MJSW     = 0.462               PHP      = 0.921               
++TPB      = 0.00147             TPHP     = 0.000868            FC       = 0 
++CTA      = 0.000842            CTP      = 0.000669            FCS      = 0
++AREA     = 3.6E-09             PJ       = 2.4E-04
+*                           
+***********************************************************************************
+*                            1.8V P+/NWELL DIODE MODEL                            *
+***********************************************************************************
+*                      
++OPTACM=1
+*
+.model pdio18ll d
++ LEVEL = 1  SCALEV=3  JS = 9.95E-08  JSW = 1.00E-15
++N        = 1.0075              RS       = 8.98E-09            IK       = 4.87E+05            
++IKR      = 2.78E+05            BV       = 11.0                IBV      = 277.78              
++TRS      = 1.51E-03            EG       = 1.16                TREF     = 25.0                
++XTI      = 3.0                 TLEV     = 1                   TLEVC    = 1
++CJ       = 0.00102             MJ       = 0.401               PB       = 0.805               
++CJSW     = 8.48E-11            MJSW     = 0.45                PHP      = 0.9                 
++TPB      = 0.00153             TPHP     = 0.00117             FC       = 0
++CTA      = 0.000876            CTP      = 0.000745            FCS      = 0
++AREA     = 3.6E-09             PJ       = 2.4E-04
+*
+***********************************************************************************
+*                            5.0V N+/PWELL DIODE MODEL                            *
+***********************************************************************************
+*
++OPTACM=1
+*
+.model ndio50ll d
++ LEVEL = 1  SCALEV=3  JS = 1.8804E-07  JSW = 1.00E-15
++N        = 0.9887              RS       = 6.20E-08            IK       = 1.40E+04            
++IKR      = 8.33E+04            BV       = 8.80                IBV      = 83.33                  
++TRS      = 2.00E-04            EG       = 1.16                TREF     = 25.0                
++XTI      = 3.0                 TLEV     = 1                   TLEVC    = 1
++CJ       = 1.226E-03           MJ       = 0.33                PB       = 0.744
++CJSW     = 1.5795E-10          MJSW     = 0.344               PHP      = 0.819
++CTA      = 8.60E-04            CTP      = 1.80E-04            TPB      = 1.60E-03        
++TPHP     = 1.67E-03            FC       = 0                   FCS      = 0   
++AREA     = 1.2E-08             PJ       = 5.2E-04
+*
+***********************************************************************************
+*                            5.0V P+/NWELL DIODE MODEL                            *
+***********************************************************************************
+*
++OPTACM=1
+*
+.model pdio50ll d
++ LEVEL = 1  SCALEV=3  JS = 2.685E-07  JSW = 1.00E-15
++N        = 1.0235              RS       = 5.484E-08           IK       = 9.10E+04            
++IKR      = 8.33E+04            BV       = 9.32                IBV      = 83.3                
++TRS      = 6.46E-04            EG       = 1.16                TREF     = 25.0                
++XTI      = 3.0                 TLEV     = 1                   TLEVC    = 1
++CJ       = 1.1571E-03          MJ       = 0.356               PB       = 0.781               
++CJSW     = 1.1116E-10          MJSW     = 0.264               PHP      = 0.736               
++TPB      = 1.60E-03            TPHP     = 1.40E-03            CTA      = 9.20E-04             
++CTP      = 4.20E-04            FC       = 0                   FCS      = 0   
++AREA     = 1.2E-08             PJ       = 5.2E-04
+*
+***********************************************************************************
+*                              NWELL/PSUB DIODE MODEL                             *
+***********************************************************************************           
+*
++OPTACM=1
+*
+.model nwdioll d
++ LEVEL = 1  SCALEV=3  JS = 8.03E-07  JSW = 1.00E-15
++N        = 1.0127              RS       = 2.24E-08            IK       = 1.12E+04            
++IKR      = 1.042E+05           BV       = 15.0                IBV      = 104.2              
++TRS      = 1.51E-03            EG       = 1.16                TREF     = 25.0                
++XTI      = 3.0                 TLEV     = 1                   TLEVC    = 1
++CJ       = 0.000115            MJ       = 0.402               PB       = 0.571               
++CJSW     = 5.55E-10            MJSW     = 0.325               PHP      = 0.733               
++CTA      = 0.00251             CTP      = 0.00111             FC       = 0
++TPB      = 0.00268             TPHP     = 0.00218             FCS      = 0
++AREA     = 9.6E-09             PJ       = 4E-04
+
++OPTACM=1
+*
+

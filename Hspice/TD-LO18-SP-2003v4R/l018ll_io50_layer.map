@@ -1,0 +1,19 @@
+# Layer Definition for 0.18um logic LL
+
+AA          drawing       10       
+NW          drawing       14       
+DNW         drawing       19        
+DG          drawing       29        
+NLL         drawing       35        
+PLL         drawing       38        
+NLH         drawing       36        
+PLH         drawing       37        
+SN          drawing       40        
+SP          drawing       43  
+MVP         drawing       44
+MVN         drawing       45        
+CT          drawing       50       
+M1          drawing       61       
+
+      
+ 

@@ -3,558 +3,201 @@
   Unpublished-rights reserved under US copyright laws.
   This program is protected by law and is subject to the 
   terms and conditions of the license agreement found in:
-    C:\synopsys\Hspice_A-2008.03-SP1\license.warn
+    D:\synopsys\Hspice_A-2008.03-SP1\license.warn
   Use of this program is your acceptance to be bound by this 
   license agreement. HSPICE is the trademark of Synopsys, Inc.
-  Input File: c:\lab\vlsi\project\c1\c1.sp                                      
- Init: read install configuration file: C:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
- Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+  Input File: e:\program\ese\hspice\vlsi\c1\c1.sp                               
+ Init: read install configuration file: D:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
+ Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
 
 
 
 
- .lib 'c:\lab\vlsi\td-lo18-sp-2003v4r\l018ll_io50_v1p3.lib' tt
-
- .param
- *1.8v core nmos 
- +dtox_n18ll      = 0            dxl_n18ll       = 0            dxw_n18ll       = 0 
- +dvth_n18ll      = 0            dcj_n18ll       = 0            dcjsw_n18ll     = 0
- +dcjswg_n18ll    = 0            dcgdo_n18ll     = 0            dcgso_n18ll     = 0
- +dpvth0_n18ll    = 0
-
- *1.8v core pmos
- +dtox_p18ll      = 0            dxl_p18ll       = 0            dxw_p18ll       = 0 
- +dvth_p18ll      = 0	        dcj_p18ll       = 0            dcjsw_p18ll     = 0
- +dcjswg_p18ll    = 0	        dcgdo_p18ll     = 0            dcgso_p18ll     = 0
- +dpvht0_p18ll    = 0
-
- *5.0v io nmos 
- +dtox_n50ll      = 0            dxl_n50ll       = 0            dxw_n50ll       = 0 
- +dvth_n50ll      = 0            dcj_n50ll       = 0            dcjsw_n50ll     = 0
- +dcjswg_n50ll    = 0            dcgdo_n50ll     = 0            dcgso_n50ll     = 0
- +dpvht0_n50ll    = 0
-
- *5.0v io pmos
- +dtox_p50ll      = 0            dxl_p50ll       = 0            dxw_p50ll       = 0 
- +dvth_p50ll      = 0	        dcj_p50ll       = 0            dcjsw_p50ll     = 0
- +dcjswg_p50ll    = 0	        dcgdo_p50ll     = 0            dcgso_p50ll     = 0
-
- .inc 'l018ll_io50_v1p3.mdl' 
- * 
- * no part of this file can be released without the consent of smic.
- *
- ****************************************************************************************
- * smic 0.18um logic low leakage 1p6m(1p5m, 1p4m) 1.8v/5v spice model (for hspice only) *
- ****************************************************************************************
- *
- * release version    : 1.3
- *
- * release date       : 06/21/2007
- *
- * simulation tool    : synopsys star-hspice version 2005.9
- *
- * model type         :
- *   mosfet           : hspice level 49(bsim3v3.2)
- *   1/f mosfet noise : hspice nlev  3
- *   junction diode   : hspice level 3
- * 
- * model name         :
- *   mosfet           :
- *        *------------------------------------* 
- *        |     mosfet type    | 1.8v  | 5.0v  | 
- *        |====================================| 
- *        |        nmos        | n18ll | n50ll |
- *        *------------------------------------*
- *        |        pmos        | p18ll | p50ll |
- *        *------------------------------------*
- *
- *   junction diode:
- *        *------------------------------------------* 
- *        | junction diode type|   1.8v   |   5.0v   |
- *        |==========================================| 
- *        |      n+/pwell      | ndio18ll | ndio50ll |
- *        |------------------------------------------|
- *        |      p+/nwell      | pdio18ll | pdio50ll |
- *        |------------------------------------------|
- *        |      nwell/psub    |       nwdioll       |
- *        *------------------------------------------*
- *
- *   the valid temperature range is from -40c to 125c
- * 
- ***********************************************************************************
- *                              1.8v core nmos model                               *
- ***********************************************************************************
- .model n18ll nmos
- +level    = 49                  
- *
- * general parameters
- *
- +lmin     = 1.5e-7              lmax     = 1.0e-5              wmin     = 1.9e-7              
- +wmax     = 1.0e-4              tnom     = 25.0                version  = 3.2                 
- +tox      = '3.85e-09+dtox_n18ll' toxm     = 3.85e-09          xj       = 2.0000000e-07       
- +nch      = 9.8100000e+18       lln      = 1.0000000           lwn      = 0.9878437           
- +wln      = 0.9650000           wwn      = 0.9800000           lint     = 3.3500000e-08       
- +ll       = -1.0000000e-15      lw       = -2.9999999e-15      lwl      = 0.00                
- +wint     = 4.7150000e-08       wl       = -1.2500000e-14      ww       = -8.7000000e-15      
- +wwl      = 0.00                mobmod   = 1                   binunit  = 2                   
- +xl       = '0.00+dxl_n18ll'    xw       = '0.00+dxw_n18ll'    dwg      = -8.0000000e-09      
- +dwb      = 1.9999999e-09       
- * diode parameters
- +acm      = 12                  ldif     = 7.00e-08            hdif     = 2.00e-07            
- +rsh      = 7.68                rd       = 0                   rs       = 0                   
- +rsc      = 1.4                 rdc      = 1.4                 calcacm  = 1                   
- *
- * threshold voltage parameters
- *
- +vth0     = '0.630+dvth_n18ll'  pvth0    = '-1.00e-15+dpvth0_n18ll'  k1       = 0.6580000           
- +k2       = 2.2000000e-02       pk2      = 3.5000000e-16       k3       = -2.9500000          
- +dvt0     = 4.8000000           dvt1     = 0.1923790           dvt2     = 0.3574100           
- +ldvt2    = -5.8000000e-08      pdvt2    = -1.000000e-15       dvt0w    = 1.00         
- +dvt1w    = 2.5000000e+06       dvt2w    = 0.3500000           nlx      = 1.5800001e-07       
- +lnlx     = -6.5000000e-15      w0       = 1.0000000e-08       k3b      = 1.7500000           
- *
- * mobility parameters
- *
- +vsat     = 9.0500000e+04       pvsat    = 3.0000000e-10       ua       = -1.1259700e-09      
- +ub       = 2.3400001e-18       lub      = -4.0000000e-26      wub      = 5.000000e-26       
- +pub      = -9.2447140e-33      uc       = 1.2500000e-10       luc      = -2.1000000e-18      
- +rdsw     = 1.3500000e+02       prwb     = 0.00                prwg     = 0.1500000           
- +wr       = 1.0000000           u0       = 3.2500000e-02       pu0      = 1.000e-16       
- +a0       = 1.8595001           keta     = 2.3000000e-02       lketa    = -5.5000000e-09      
- +pketa    = -3.2000000e-16      a1       = 0.00                a2       = 0.9900000           
- +ags      = 0.5000000           b0       = 3.0000000e-09       b1       = 0.00                
- *
- * subthreshold current parameters
- *
- +voff     = -0.1150000          lvoff    = 2.5000000e-09       wvoff    = 1.9999999e-09       
- +pvoff    = -4.0000000e-16      nfactor  = 0.2000000           lnfactor = 2.2000000e-08       
- +cit      = 0.00                cdsc     = 0.00                cdscb    = 0.00                
- +cdscd    = 0.00                eta0     = 0.2300000           peta0    = 2.9999999e-15       
- +etab     = -0.4100000          dsub     = 0.5600000           
- *
- * rout parameters
- *
- +pclm     = 0.3000000           lpclm    = 8.8000000e-08       ppclm    = 1.0000000e-15       
- +pdiblc1  = 0.3400000           ppdiblc1 = 6.0000000e-15       pdiblc2  = 3.0000000e-03       
- +wpdiblc2 = -5.0000000e-10      pdiblcb  = 1.0000000           drout    = 0.5600000           
- +pscbe1   = 2.8000000e+08       pscbe2   = 1.0000000e-07       pvag     = 0.00                
- +delta    = 1.0000000e-02       alpha0   = -3.2566100e-08      lalpha0  = -7.2014690e-14      
- +alpha1   = 6.5878370           beta0    = 17.5200000          lbeta0   = -5.8421530e-07      
- *
- * temperature effects parameters
- *
- +kt1      = -0.2197741          kt2      = -3.5462550e-02      at       = 3.3000000e+04       
- +ute      = -1.4599750          ua1      = 1.2221389e-09       wua1     = -4.5000000e-17      
- +pua1     = 6.2125720e-25       ub1      = -1.4128000e-18      uc1      = 3.0600002e-11       
- +kt1l     = 3.0080380e-09       prt      = -55.0000000         
- *
- * capacitance parameters
- *
- +cj       = '1.09e-03+dcj_n18ll'    mj       = 0.389                pb       = 0.77                   
- +cjsw     = '9.39e-11+dcjsw_n18ll'  mjsw     = 0.462                pbsw     = 0.921                 
- +cjswg    = '4.58e-10+dcjswg_n18ll' mjswg    = 0.462                pbswg    = 0.921
- +tcj      = 8.42e-04                tcjsw    = 6.69e-04             tcjswg   = 6.69e-04      
- +tpb      = 1.47e-03                tpbsw    = 8.68e-04             tpbswg   = 8.68e-04
- +js       = 1.55e-07                jsw      = 2.0e-12              nj       = 1.03 
- +xti      = 3.0                     nqsmod   = 0                    elm      = 5
- +cgdo     = '3.68e-10+dcgdo_n18ll'  cgso     = '3.68e-10+dcgso_n18ll' tlevc  = 1            
- +capmod   = 3                       xpart    = 1                    cf       = 0.00                   
- +acde     = 0.4                     moin     = 21.25                noff     = 1.31           
- +voffcv   = -0.0762                 cgbo     = 0            
- +llc      = 0                       lwc      = 0                    lwlc     = 0
- +wlc      = 0                       wwc      = 0                    wwlc     = 0               
- +dlc      = 1.00e-08                dwc      = -7.5e-09
- +nlev     = 3                       af       = 0.88                 kf       = 1.7e-24 
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  model n18ll           device geometries will not be checked against the limits set bylmin, lmax, wmin and wmax. To enable this check, add a period(.)to the model name(i.e. enable model selector).
- *
- ***********************************************************************************
- *                              1.8v core pmos model                               *
- ***********************************************************************************
- *
- .model p18ll pmos
- +level    = 49                  
- *
- * general parameters
- *
- +lmin     = 1.5e-7              lmax     = 1.0e-5              wmin     = 1.9e-7              
- +wmax     = 1.0e-4              tnom     = 25.0                version  = 3.2              
- +tox      = '3.81e-09+dtox_p18ll' toxm     = 3.81e-09          xj       = 2.3000000e-07       
- +nch      = 4.5700000e+18       lln      = 0.9800000           lwn      = 0.9850000           
- +wln      = 1.0110000           wwn      = 0.9900000           lint     = 4.0000000e-09       
- +ll       = 1.0200000e-14       lw       = -9.5500000e-17      lwl      = -2.5000000e-24      
- +wint     = 8.0000000e-09       wl       = 5.2100000e-15       ww       = -5.0000000e-16      
- +wwl      = -1.9999999e-21      mobmod   = 1                   binunit  = 2                   
- +xl       = '0.00+dxl_p18ll'    xw       = '0.00+dxw_p18ll'    dwg      = -2.7000000e-08      
- +dwb      = 2.5000000e-08       
- * diode parameters
- +acm      = 12                  ldif     = 7.00e-08            hdif     = 2.00e-07            
- +rsh      = 7.83                rd       = 0                   rs       = 0                   
- +rsc      = 1.7                 rdc      = 1.7                 calcacm  = 1                   
- *
- * threshold voltage parameters
- *
- +vth0     = '-0.63+dvth_p18ll'  k1       = 0.7290000           lk1      = 2.5000000e-09       
- +k2       = 3.3000000e-02       lk2      = -2.9000000e-09      k3       = -2.2000000          
- +dvt0     = 0.5550000           dvt1     = 0.1150000           dvt2     = -6.0000000e-02      
- +dvt0w    = 0.1200000           dvt1w    = 1.2000000e+06       dvt2w    = 0.1800000           
- +nlx      = 2.9999999e-08       lnlx     = -9.0000000e-16      w0       = 1.0000000e-07       
- +k3b      = 3.2000000           ngate    = 7.8900000e+20       pvth0    = '0.00+dpvht0_p18ll'
-
- * mobility parameters
- *
- +vsat     = 8.6000000e+04       pvsat    = -5.3000000e-10      ua       = 5.8800000e-11       
- +lua      = 6.2500000e-17       ub       = 1.1000000e-18       lub      = -2.0000000e-26      
- +wub      = 9.0000000e-26       pub      = -4.5000000e-33      uc       = -6.0000000e-11      
- +wuc      = 5.7000000e-17       puc      = -1.4000000e-24      rdsw     = 8.3000000e+02       
- +prwb     = 0.00                prwg     = 0.00                wr       = 1.0000000           
- +u0       = 8.0700000e-03       lu0      = -9.7663010e-11      wu0      = 3.8000000e-10       
- +pu0      = -9.8000000e-18      a0       = 1.0000000           keta     = 2.9999999e-02       
- +lketa    = -8.0000000e-09      pketa    = 4.0000000e-16       a1       = 0.00                
- +a2       = 0.9900000           ags      = 0.00                b0       = 2.8000001e-08       
- +b1       = 0.00                
- *
- * subthreshold current parameters
- *
- +voff     = -0.1100000          lvoff    = -1.0000000e-09      wvoff    = 7.3000000e-09       
- +nfactor  = 0.3000000           lnfactor = 2.6000000e-08       cit      = 0.00                
- +cdsc     = 0.00                cdscb    = 0.00                cdscd    = 0.00                
- +eta0     = 1.2000000e-02       peta0    = 5.0000000e-16       etab     = -4.0000000e-02      
- +dsub     = 0.5600000           
- *
- * rout parameters
- *
- +pclm     = 0.6000000           pdiblc1  = 1.7999999e-02       pdiblc2  = 5.0000000e-04       
- +pdiblcb  = 0.00                drout    = 0.5600000           pscbe1   = 2.0000000e+08       
- +pscbe2   = 1.0000000e-08       pvag     = 0.00                delta    = 1.0000000e-02       
- +alpha0   = 6.3845700e-06       alpha1   = 76.0000000          lalpha1  = -1.2904773e-05      
- +beta0    = 29.9913810          lbeta0   = -8.7270800e-07      
- *
- * temperature effects parameters
- *
- +kt1      = -0.2443267          lkt1     = 3.0000000e-09       pkt1     = -7.0000000e-16      
- +kt2      = -3.5700800e-02      lkt2     = 9.0000000e-10       pkt2     = -6.5331750e-16      
- +at       = 2.6000000e+04       lat      = -1.4000000e-03      pat      = -2.0000000e-10      
- +ute      = -1.3000000          lute     = 1.4999999e-08       ua1      = 5.5962600e-10       
- +wua1     = 1.2000000e-16       pua1     = 7.8000000e-24       ub1      = -1.9499999e-18      
- +uc1      = 8.1000000e-12       kt1l     = -4.1114100e-09      prt      = 52.7500000          
- *
- * capacitance parameters
- *
- +cj       = '0.00102+dcj_p18ll'     mj       = 0.401                 pb       = 0.805                   
- +cjsw     = '8.48e-11+dcjsw_p18ll'  mjsw     = 0.45                  pbsw     = 0.9               
- +cjswg    = '4.28e-10+dcjswg_p18ll' mjswg    = 0.45                  pbswg    = 0.9      
- +tpb      = 0.00153                 tpbsw    = 0.00117               tpbswg   = 0.00117
- +tcj      = 0.000876                tcjsw    = 0.000745              tcjswg   = 0.000745
- +js       = 9.95e-08                jsw      = 1.0e-12               nj       = 1.03   
- +xti      = 3.0                     nqsmod   = 0                     elm      = 5 
- +cgdo     = '3.35e-10+dcgdo_p18ll'  cgso     = '3.35e-10+dcgso_p18ll'  tlevc  = 1            
- +capmod   = 3                       xpart    = 1                     cf       = 0.00                                    
- +acde     = 1.368913                moin     = 11.1                  noff     = 1.41             
- +voffcv   = -0.036                  cgbo     = 0 
- +llc      = 0                       lwc      = 0                     lwlc     = 0
- +wlc      = 0                       wwc      = 0                     wwlc     = 0               
- +dlc      = 1.00e-08                dwc      = -7.5e-09
- +nlev     = 3                       af       = 1.16                  kf       = 2.8e-23  
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:136)  model p18ll           device geometries will not be checked against the limits set bylmin, lmax, wmin and wmax. To enable this check, add a period(.)to the model name(i.e. enable model selector).
- *  
- ***********************************************************************************
- *                               5.0v io nmos model                                *
- ***********************************************************************************
- *
- .model n50ll nmos
- +level    = 49                  
- *
- * general parameters
- *
- +lmin     = 4.8e-7                lmax     = 1.0e-5              wmin     = 2.0e-7              
- +wmax     = 1.0e-4                tnom     = 25.0                version  = 3.2                 
- +tox      = '1.19e-08+dtox_n50ll' toxm     = 1.19e-08            
- +xj       = 2.0000000e-07         nch      = 1.4300000e+17       lln      = 1.0000000           
- +lwn      = 1.0000000             wln      = 0.9600000           wwn      = 0.9600000           
- +lint     = 1.1650000e-07         ll       = -2.1000000e-14      lw       = 0.00                
- +lwl      = 0.00                  wint     = 0.00                wl       = -1.2958000e-14      
- +ww       = -1.1800000e-14        wwl      = -7.0000000e-22      mobmod   = 1                   
- +binunit  = 2                     xl       = '0.00+dxl_n50ll'    xw       = '0.00+dxw_n50ll'                                
- +dwg      = 0.00                  dwb      = 1.0000000e-08       
- * diode parameters
- +acm      = 12                    ldif     = 9.00e-08            hdif     = 1.80e-07            
- +rsh      = 7.08                  rd       = 0                   rs       = 0                   
- +rsc      = 1.15                  rdc      = 1.15                calcacm  = 1                   
- *
- * threshold voltage parameters
- *
- +vth0     = '0.7240000+dvth_n50ll' pvth0    = '-1.2000000e-14+dpvht0_n50ll' k1       = 0.9700000           
- +pk1      = -2.5000000e-15         k2       = -1.5000000e-02                k3       = -4.4500000          
- +dvt0     = 7.4600000              dvt1     = 0.8050000                     dvt2     = 0.00                
- +dvt0w    = 3.5800000e-02          dvt1w    = 6.2467000e+04                 dvt2w    = 0.00                
- +nlx      = 1.9800000e-07          w0       = 0.00                          k3b      = 2.4000001                  
- *
- * mobility parameters
- *
- +vsat     = 7.7500000e+04       pvsat    = -1.4500000e-10      ua       = -3.6500000e-10      
- +wua      = 4.9000000e-16       ub       = 2.6000001e-18       lub      = -1.1200001e-25      
- +wub      = -6.2900000e-25      pub      = -6.1000000e-32      uc       = 8.3758510e-11       
- +puc      = -1.0000000e-23      rdsw     = 4.5800000e+02       prwb     = 0.00                
- +prwg     = 2.0000000e-02       wr       = 1.0000000           u0       = 4.4150000e-02       
- +a0       = 0.9600000           wa0      = -8.0000000e-08      pa0      = 5.0000000e-14       
- +keta     = -1.5000000e-03      a1       = 0.00                a2       = 0.9900000           
- +ags      = 0.1500000           b0       = 0.00                b1       = 0.00                
- *
- * subthreshold current parameters
- *
- +voff     = -0.1300000          nfactor  = 0.9000000           cit      = 8.0000000e-04       
- +cdsc     = 0.00                cdscb    = 0.00                cdscd    = 0.00                
- +eta0     = 1.0000000e-02       etab     = -4.0000000e-02      dsub     = 0.5600000           
- *
- * rout parameters
- *
- +pclm     = 1.1000000           ppclm    = 7.0000000e-14       pdiblc1  = 0.1200000           
- +pdiblc2  = 1.8000001e-03       pdiblcb  = 0.3000000           drout    = 0.5600000           
- +pscbe1   = 4.2000000e+08       pscbe2   = 1.0000000e-07       pvag     = 0.00                
- +delta    = 1.0000000e-02       alpha0   = 3.8000000e-07       alpha1   = 5.3800000           
- +beta0    = 26.9200000          lbeta0   = -1.4000000e-07      
- *
- * temperature effects parameters
- *
- +kt1      = -0.4491000          wkt1     = 2.6786964e-08       pkt1     = 1.5700000e-14       
- +kt2      = -7.3600000e-02      pkt2     = 3.8500000e-15       at       = 2.4200000e+04       
- +pat      = -1.1800000e-09      ute      = -1.3564000          lute     = 1.5600000e-07       
- +wute     = 6.2000000e-08       pute     = -6.5000000e-14      ua1      = 3.4832000e-09       
- +lua1     = 4.3079160e-16       pua1     = -8.2500000e-23      ub1      = -5.1387000e-18      
- +uc1      = -6.5268150e-11      kt1l     = -1.0703000e-08      prt      = 0.00                
- *
- * capacitance parameters
- *
- +cj       = '1.226e-03+dcj_n50ll'    mj       = 0.33                     pb       = 0.744                   
- +cjsw     = '1.5795e-10+dcjsw_n50ll' mjsw     = 0.344                    pbsw     = 0.819                 
- +cjswg    = '3.931e-10+dcjswg_n50ll' mjswg    = 0.385                    pbswg    = 0.75                 
- +tpb      = 1.60e-03                 tpbsw    = 1.67e-03                 tpbswg   = 1.69e-03            
- +tcj      = 8.60e-04                 tcjsw    = 1.80e-04                 tcjswg   = 1.20e-03                   
- +js       = 2.1986e-07               jsw      = 2.72e-12                 nj       = 0.9887                 
- +xti      = 3.0                      nqsmod   = 0                        elm      = 5  
- +cgdo     = '3.74e-10+dcgdo_n50ll'   cgso     = '3.74e-10+dcgso_n50ll'   cgbo     = 0.00            
- +capmod   = 3                        xpart    = 1                        cf       = 0.00                                   
- +dlc      = 0                        dwc      = 0                        tlevc    = 1
- +llc      = 0                        lwc      = 0                        wlc      = 0        
- +wwc      = 0                        lwlc     = 0                        wwlc     = 0        
- +acde     = 0.41                     moin     = 10.2                     noff     = 1.584    
- +voffcv   = -0.0714
- +nlev     = 3                        af       = 0.88                     kf       = 3.07e-24
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:220)   model n50ll is not used in netlist
- *  
- ***********************************************************************************
- *                               5.0v io pmos model                                *
- ***********************************************************************************
- *
- .model p50ll pmos
- +level    = 49                  
- *
- * general parameters
- *
- +lmin     = 4.8e-7                lmax     = 1.0e-5              wmin     = 2.0e-7              
- +wmax     = 1.0e-4                tnom     = 25.0                version  = 3.2                 
- +tox      = '1.25e-08+dtox_p50ll' toxm     = 1.25e-08            
- +xj       = 2.5000000e-07         nch      = 2.6900000e+17       lln      = 1.0000000           
- +lwn      = 1.0000000             wln      = 0.9600000           wwn      = 1.0500000           
- +lint     = 2.5649999e-08         ll       = 1.9819001e-14       lw       = 0.00                
- +lwl      = 0.00                  wint     = 0.00                wl       = 1.5700000e-14       
- +ww       = 0.00                  wwl      = 0.00                mobmod   = 1                   
- +binunit  = 2                     xl       = '0.00+dxl_p50ll'    xw       = '0.00+dxw_p50ll'                                 
- +dwg      = 0.00                  dwb      = 4.8800020e-09       
- * diode parameters
- +acm      = 12                    ldif     = 9.00e-08            hdif     = 1.80e-07            
- +rsh      = 7.83                  rd       = 0                   rs       = 0                   
- +rsc      = 0.5                   rdc      = 0.5                 calcacm  = 1                   
- *
- * threshold voltage parameters
- *
- +vth0     = '-0.8340000+dvth_p50ll' pvth0    = -1.5000000e-15      k1       = 0.9860000           
- +pk1      = 8.5000000e-16           k2       = 6.2600000e-02       k3       = -4.4500000          
- +dvt0     = 2.8982000               dvt1     = 0.6000000           dvt2     = 0.00                
- +dvt0w    = 0.2607970               dvt1w    = 1.5700000e+05       dvt2w    = 0.00                
- +nlx      = 9.5000000e-08           w0       = 2.7959001e-07       k3b      = 3.0999999           
- +ngate    = 2.2999999e+20       
- *
- * mobility parameters
- *
- +vsat     = 8.8000000e+04       ua       = 2.2669999e-09       wua      = -4.0000000e-16      
- +pua      = -4.2300000e-23      ub       = -2.5099999e-20      uc       = -7.5661700e-11      
- +puc      = -8.0000000e-24      rdsw     = 1.2500000e+03       prwb     = 0.00                
- +prwg     = 5.1392830e-03       wr       = 1.0000000           u0       = 1.5000000e-02       
- +a0       = 1.0000000           pa0      = -2.0000000e-14      keta     = -5.0000000e-03      
- +a1       = 0.00                a2       = 0.9900000           ags      = 6.5500000e-02       
- +b0       = 0.00                b1       = 0.00                
- *
- * subthreshold current parameters
- *
- +voff     = -0.1350000          nfactor  = 1.0700001           cit      = -1.9999997e-04      
- +cdsc     = 3.4500000e-04       cdscb    = 0.00                cdscd    = 0.00                
- +eta0     = 4.0000000e-02       peta0    = -2.0000000e-15      etab     = -4.0000000e-02      
- +dsub     = 0.5600000           
- *
- * rout parameters
- *
- +pclm     = 1.0000000           ppclm    = 4.0000000e-14       pdiblc1  = 2.0000000e-02       
- +pdiblc2  = 1.0000000e-03       pdiblcb  = 0.00                drout    = 0.5600000           
- +pscbe1   = 3.1000000e+08       pscbe2   = 1.0000000e-06       pvag     = 0.00                
- +delta    = 1.0000000e-02       alpha0   = 1.2500000e-07       alpha1   = 1.2600000           
- +beta0    = 25.0000000          
- *
- * temperature effects parameters
- *
- +kt1      = -0.3979000          wkt1     = 2.4400000e-08       pkt1     = -6.5800000e-15      
- +kt2      = -6.6400000e-02      at       = -2.8000000e+04      pat      = 1.9999981e-10       
- +ute      = -1.3770000          ua1      = -8.9800000e-10      lua1     = 4.0000000e-17       
- +pua1     = 4.3400000e-23       ub1      = -1.4000000e-18      wub1     = 5.3600000e-25       
- +uc1      = 0.00                puc1     = 1.6000000e-23       kt1l     = -1.3200000e-08      
- +prt      = 0.00                
- *
- * capacitance parameters
- *
- +cj       = '1.1571e-03+dcj_p50ll'   mj       = 0.356                    pb       = 0.781                   
- +cjsw     = '1.1116e-10+dcjsw_p50ll' mjsw     = 0.264                    pbsw     = 0.736                 
- +cjswg    = '3.694e-10+dcjswg_p50ll' mjswg    = 0.36                     pbswg    = 0.71                 
- +tpb      = 1.60e-03                 tpbsw    = 1.40e-03                 tpbswg   = 1.40e-03            
- +tcj      = 9.20e-04                 tcjsw    = 4.20e-04                 tcjswg   = 8.50e-04                   
- +js       = 2.685e-07                jsw      = 1.43e-12                 nj       = 1.0235                 
- +xti      = 3.0                      nqsmod   = 0                        elm      = 5
- +cgdo     = '3.43e-10+dcgdo_p50ll'   cgso     = '3.43e-10+dcgso_p50ll'   cgbo     = 0.00         
- +capmod   = 3                        xpart    = 1                        cf       = 0.00                                                     
- +dlc      = 0                        dwc      = 0                        tlevc    = 1   
- +llc      = 0                        lwc      = 0                        wlc      = 0     
- +wwc      = 0                        lwlc     = 0                        wwlc     = 0     
- +acde     = 0.74                     moin     = 16.25                    noff     = 1.612 
- +voffcv   = -0.0344    
- +nlev     = 3                        af       = 1.06                     kf       = 5.03e-23 
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:304)   model p50ll is not used in netlist
- *
- ***********************************************************************************
- *                            1.8v n+/pwell diode model                            *
- ***********************************************************************************
- *
- .model ndio18ll d
- +level    = 3                   js       = 1.55e-07            jsw      = 1e-15                
- +n        = 1.0079              rs       = 8.60e-09            ik       = 1.47e+05            
- +ikr      = 2.78e+05            bv       = 11.0                ibv      = 277.78              
- +trs      = 1.51e-03            eg       = 1.16                tref     = 25.0                
- +xti      = 3.0                 tlev     = 1                   tlevc    = 1
- +cj       = 0.00109             mj       = 0.389               pb       = 0.77                
- +cjsw     = 9.39e-11            mjsw     = 0.462               php      = 0.921               
- +tpb      = 0.00147             tphp     = 0.000868            fc       = 0 
- +cta      = 0.000842            ctp      = 0.000669            fcs      = 0
- +area     = 3.6e-09             pj       = 2.4e-04
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:389)   model ndio18ll is not used in netlist
- *                           
- ***********************************************************************************
- *                            1.8v p+/nwell diode model                            *
- ***********************************************************************************
- *                      
- .model pdio18ll d
- +level    = 3                   js       = 9.95e-08            jsw      = 1.00e-15            
- +n        = 1.0075              rs       = 8.98e-09            ik       = 4.87e+05            
- +ikr      = 2.78e+05            bv       = 11.0                ibv      = 277.78              
- +trs      = 1.51e-03            eg       = 1.16                tref     = 25.0                
- +xti      = 3.0                 tlev     = 1                   tlevc    = 1
- +cj       = 0.00102             mj       = 0.401               pb       = 0.805               
- +cjsw     = 8.48e-11            mjsw     = 0.45                php      = 0.9                 
- +tpb      = 0.00153             tphp     = 0.00117             fc       = 0
- +cta      = 0.000876            ctp      = 0.000745            fcs      = 0
- +area     = 3.6e-09             pj       = 2.4e-04
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:405)   model pdio18ll is not used in netlist
- *
- ***********************************************************************************
- *                            5.0v n+/pwell diode model                            *
- ***********************************************************************************
- *
- .model ndio50ll d
- +level    = 3                   js       = 1.8804e-07          jsw      = 1.00e-15            
- +n        = 0.9887              rs       = 6.20e-08            ik       = 1.40e+04            
- +ikr      = 8.33e+04            bv       = 8.80                ibv      = 83.33                  
- +trs      = 2.00e-04            eg       = 1.16                tref     = 25.0                
- +xti      = 3.0                 tlev     = 1                   tlevc    = 1
- +cj       = 1.226e-03           mj       = 0.33                pb       = 0.744
- +cjsw     = 1.5795e-10          mjsw     = 0.344               php      = 0.819
- +cta      = 8.60e-04            ctp      = 1.80e-04            tpb      = 1.60e-03        
- +tphp     = 1.67e-03            fc       = 0                   fcs      = 0   
- +area     = 1.2e-08             pj       = 5.2e-04
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:421)   model ndio50ll is not used in netlist
- *
- ***********************************************************************************
- *                            5.0v p+/nwell diode model                            *
- ***********************************************************************************
- *
- .model pdio50ll d
- +level    = 3                   js       = 2.685e-07           jsw      = 1.00e-15            
- +n        = 1.0235              rs       = 5.484e-08           ik       = 9.10e+04            
- +ikr      = 8.33e+04            bv       = 9.32                ibv      = 83.3                
- +trs      = 6.46e-04            eg       = 1.16                tref     = 25.0                
- +xti      = 3.0                 tlev     = 1                   tlevc    = 1
- +cj       = 1.1571e-03          mj       = 0.356               pb       = 0.781               
- +cjsw     = 1.1116e-10          mjsw     = 0.264               php      = 0.736               
- +tpb      = 1.60e-03            tphp     = 1.40e-03            cta      = 9.20e-04             
- +ctp      = 4.20e-04            fc       = 0                   fcs      = 0   
- +area     = 1.2e-08             pj       = 5.2e-04
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:437)   model pdio50ll is not used in netlist
- *
- ***********************************************************************************
- *                              nwell/psub diode model                             *
- ***********************************************************************************           
- *
- .model nwdioll d
- +level    = 3                   js       = 8.03e-07            jsw      = 1.00e-15            
- +n        = 1.0127              rs       = 2.24e-08            ik       = 1.12e+04            
- +ikr      = 1.042e+05           bv       = 15.0                ibv      = 104.2              
- +trs      = 1.51e-03            eg       = 1.16                tref     = 25.0                
- +xti      = 3.0                 tlev     = 1                   tlevc    = 1
- +cj       = 0.000115            mj       = 0.402               pb       = 0.571               
- +cjsw     = 5.55e-10            mjsw     = 0.325               php      = 0.733               
- +cta      = 0.00251             ctp      = 0.00111             fc       = 0
- +tpb      = 0.00268             tphp     = 0.00218             fcs      = 0
- +area     = 9.6e-09             pj       = 4e-04
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:453)   model nwdioll is not used in netlist
- .endl  tt
- .unprotect
+  **warning** (E:\Program\ESE\Hspice\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
  .temp 25
 
 
  .subckt trg gn gp in out vdd vss
  m0 out gp in vdd p18ll w=0.18u l=0.18u
  m1 out gn in vdd n18ll w=0.18u l=0.18u
- .end
-  **error** (c:\lab\vlsi\project\c1\c1.sp:10) .ends  card missing at readin
-  **error** (c:\lab\vlsi\project\c1\c1.sp:10) difficulty in reading input
+ .ends
 
-          ***** job aborted
+ .subckt invter in out vdd vss 
+ m1 out in vdd vdd p18ll l=0.18u w=1.5u 
+ m0 out in vss vss n18ll l=0.18u w=0.5u 
+ .ends
+
+ .subckt ab ina inb out vdd vss
+ m0 out ina vdd vdd p18ll w=2.0u l=0.25u
+ m1 out inb vdd vdd p18ll w=2.0u l=0.25u
+ m2 out ina ab vss n18ll w=1.0u l=0.25u
+ m3 ab inb vss vss n18ll w=1.0u l=0.25u
+ x1 outq out vdd vss invter
+ .ends
+
+ .subckt nor ina inb out vdd vss
+ m0 aob ina vdd vdd p18ll w=2.0u l=0.25u
+ m1 out inb aob vdd p18ll w=2.0u l=0.25u
+ m2 out ina vss vss n18ll w=0.25u l=0.25u
+ m3 out inb vss vss n18ll w=0.25u l=0.25u
+ .ends
+
+ .subckt invlin in out vdd vss 
+ m0 outq in vss vss n18ll w=0.265u l=0.18u
+ m1 outq in vdd vdd p18ll w=0.620u l=0.18u
+ m2 out outq vss vss n18ll w=0.50u l=0.18u 
+ m3 out outq vdd vdd p18ll w=1.20u l=0.18u 
+ .ends
+
+ .subckt c0  a b out vdd vss
+ x1 aq a vdd vss invter
+ x2 bq b vdd vss invter
+ x3 bq b a out vdd vss trg
+ x4 a b g vdd vss ab
+ x5 a b p vdd vss nor
+ m0 out g vss vss n18ll w=0.265u l=0.18u
+ m1 out p vdd vdd p18ll w=0.620u l=0.18u
+ .ends
+
+ *加负载
+ x1 a b out vdd vss c0
+ c1 out vss 0.2pf
+
+ *设置vdd
+ vdd vdd 0 dc 'vddvalue_vdd'
+ .param vddvalue_vdd=1.8v
+
+ *设置vss
+ vss vss 0 dc 'vddvalue_vss'
+ .param vddvalue_vss=0v
+
+ *设置输入
+ vin1 a 0 pwl 10ns 0v, 11ns 1.8v,50ns 1.8v,51ns 0v
+ vin2 b 0 pwl 10ns 0v ,40ns 0v, 41ns 1.8v, 60ns 1.8v, 61ns 0v
+
+
+ *瞬态仿真
+ .tran 1ns 80ns
+ .ic q 0v
+ .probe v(out) v(in)
+
+ .end
+
+ ***********************************************************************
+ ** runlvl is invoked, you can disable it by:
+      a) Add option runlvl=0 to your current simulation job.
+      b) Copy $installdir/hspice.ini to your HOME directory and
+         customize it by adding option runlvl=0, which disables
+         it for all of your simulation jobs.
+      c) Re-invoke $installdir/bin/config program and unselect the
+         option runlvl setting in box 'hspice.ini' which disables
+         it for whole group simulation jobs.
+
+ ** runlvl is invoked, some options are ignored or automatically set:
+      Options below are automatically set(user setting will overwrite them):
+      if runlvl=[1|2|3|4|5|6],  .option bypass=2
+
+      Options below are ignored, they are replaced by automated algorithms:
+        lvltim    dvdt      ft    fast   trtol  absvar  relvar
+          relq  chgtol    dvtr    imin    itl3    rmax
+
+ ** runlvl is invoked, actual option value used by HSPICE are:
+       runlvl= 3       bypass= 2      mbypass=   2.00   bytol= 100.00u
+ ***********************************************************************
+
 1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
  ******  
- ﻿.protect
+ ﻿**c1***
+
+  ******  circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 x1.                             c0                 1.00 
+        2 x1.x1.                          invter             1.00 
+        3 x1.x2.                          invter             1.00 
+        4 x1.x3.                          trg                1.00 
+        5 x1.x4.                          ab                 1.00 
+        6 x1.x5.                          nor                1.00 
+        7 x1.x4.x1.                       invter             1.00 
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vin1                new dc=  0.0000D+00
+
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vin2                new dc=  0.0000D+00
+
+ 
+
+ **warning**  attempt to reference undefined node     0:in              
+  in the definition of v(in,0)
+   branch - output ignored
+
+ 
+
+
+
+ **warning**  no dc path to ground from node        1:aq               defined in subckt c0              now it is connected with gdcpath
+
+
+
+
+
+
+
+
+      
+  Opening plot unit= 79
+ file=e:\program\ese\hspice\vlsi\c1\c1.pa0                                     
+
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ ﻿**c1***
+
+  ******  operating point information tnom=  25.000 temp=  25.000 *****
+ ***** operating point status is voltage   simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:a       =   0.      0:b       =   0.      0:out     = 954.8394m
+ +0:vdd     =   1.8000  0:vss     =   0.      1:aq      =   0.     
+ +1:bq      =   0.      1:g       =   1.8000  1:p       =   1.8000 
+ +5:ab      = 447.8335m 5:outq    =   0.      6:aob     =   1.8000 
+
+
+          ***** job concluded
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ ﻿**c1***
 
   ******  job statistics summary tnom=  25.000 temp=  25.000 *****
 
   ******  Circuit Statistics  ******
-  # nodes       =       0  # elements   =       0
-  # resistors   =       0  # capacitors =       0  # inductors   =       0
+  # nodes       =      49  # elements   =      23
+  # resistors   =       0  # capacitors =       1  # inductors   =       0
   # mutual_inds =       0  # vccs       =       0  # vcvs        =       0
-  # cccs        =       0  # ccvs       =       0  # volt_srcs   =       0
+  # cccs        =       0  # ccvs       =       0  # volt_srcs   =       4
   # curr_srcs   =       0  # diodes     =       0  # bjts        =       0
-  # jfets       =       0  # mosfets    =       0  # U elements  =       0
+  # jfets       =       0  # mosfets    =      18  # U elements  =       0
   # T elements  =       0  # W elements =       0  # B elements  =       0
   # S elements  =       0  # P elements =       0  # va device   =       0
 
 
   ******  Runtime Statistics (seconds)  ******
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.00           1           0
-  readin             0.03
+  op point           0.01           1          25
+  transient          0.05          81         236          81 rev=         4
+  readin             0.01
   errchk             0.00
-  setup              0.00
+  setup              0.01
   output             0.00
 
 
-           total memory used          145  kbytes
-           total cpu time            0.03 seconds
+           total memory used          333  kbytes
+           total cpu time            0.10 seconds
            total elapsed time           1 seconds
-           job started at     22:30:15 12/21/2014
-           job ended   at     22:30:15 12/21/2014
+           job started at     11:29:58 12/23/2014
+           job ended   at     11:29:59 12/23/2014
 
 
+ Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

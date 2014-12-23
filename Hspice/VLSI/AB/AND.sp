@@ -1,18 +1,24 @@
 **AB***
 .protect
-.lib 'C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.lib' TT
+.lib 'E:\Program\ESE\Hspice\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.lib' TT
 .unprotect
 .temp 25
 
+.subckt invter in out vdd vss 
+M1 out in vdd vdd p18ll  W=1.5u L=0.18u
+M0 out in vss vss n18ll  W=0.5u L=0.18u
+.ends
+
 .subckt AB inA inB out vdd vss
-M0 out inA vdd vdd p18ll w=1.5u l=0.18u
-M1 out inB vdd vdd p18ll w=1.5u l=0.18u
-M2 out inA AB vss n18ll w=0.75u l=0.18u
-M3 AB inB vss vss n18ll w=0.75u l=0.18u
+M0 outq inA vdd vdd p18ll w=2.0u l=0.25u
+M1 outq inB vdd vdd p18ll w=2.0u l=0.25u
+M2 outq inA AB vss n18ll w=1.0u l=0.25u
+M3 AB inB vss vss n18ll w=1.0u l=0.25u
+X1 outq out vdd vss invter
 .ends
 
 x1 inA inB out vdd vss AB
-C1 out vss 0.3pf
+C1 out vss 0.2pf
 
 VDD vdd 0 dc 'vddvalue_vdd'
 .param vddvalue_vdd=1.8v
