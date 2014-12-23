@@ -19,49 +19,68 @@
 
  .subckt trg gn gp in out vdd vss
  m0 out gp in vdd p18ll w=0.18u l=0.18u
- m1 out gn in vdd n18ll w=0.18u l=0.18u
+ m1 out gn in vss n18ll w=0.18u l=0.18u
  .ends
 
  .subckt invter in out vdd vss 
- m1 out in vdd vdd p18ll l=0.18u w=1.5u 
- m0 out in vss vss n18ll l=0.18u w=0.5u 
+ m0 out in vdd vdd p18ll w=0.18u l=0.18u
+ m1 out in vss vss n18ll w=0.18u l=0.18u
  .ends
 
  .subckt ab ina inb out vdd vss
- m0 out ina vdd vdd p18ll w=2.0u l=0.25u
- m1 out inb vdd vdd p18ll w=2.0u l=0.25u
- m2 out ina ab vss n18ll w=1.0u l=0.25u
- m3 ab inb vss vss n18ll w=1.0u l=0.25u
+ m0 out ina vdd vdd p18ll w=0.76u l=0.18u
+ m1 out inb vdd vdd p18ll w=0.76u l=0.18u
+ m2 out ina ab vss n18ll w=0.36u l=0.18u
+ m3 ab inb vss vss n18ll w=0.36u l=0.18u
  x1 outq out vdd vss invter
  .ends
 
  .subckt nor ina inb out vdd vss
- m0 aob ina vdd vdd p18ll w=2.0u l=0.25u
- m1 out inb aob vdd p18ll w=2.0u l=0.25u
- m2 out ina vss vss n18ll w=0.25u l=0.25u
- m3 out inb vss vss n18ll w=0.25u l=0.25u
+ m0 aob ina vdd vdd p18ll w=0.72u l=0.18u
+ m1 out inb aob vdd p18ll w=0.72u l=0.18u
+ m2 out ina vss vss n18ll w=0.18u l=0.18u
+ m3 out inb vss vss n18ll w=0.18u l=0.18u
  .ends
 
- .subckt invlin in out vdd vss 
- m0 outq in vss vss n18ll w=0.265u l=0.18u
- m1 outq in vdd vdd p18ll w=0.620u l=0.18u
- m2 out outq vss vss n18ll w=0.50u l=0.18u 
- m3 out outq vdd vdd p18ll w=1.20u l=0.18u 
+ *xorc
+ .subckt xorc ina inb out vdd vss 
+ x1 ina aq vdd vss invter
+ *定义共栅的p/nmos传输管
+ m0 out inb ina vdd p18ll w=0.18u l=0.18u
+ m1 out inb aq vss n18ll w=0.18u l=0.18u
+ *以下是传输门
+ m2 out ina inb vdd p18ll w=0.18u l=0.18u
+ m3 out aq inb vss n18ll w=0.18u l=0.18u
  .ends
 
- .subckt c0  a b out vdd vss
- x1 aq a vdd vss invter
- x2 bq b vdd vss invter
- x3 bq b a out vdd vss trg
+ .subckt c0 c a b out vdd vss
+ x1 a b axb vdd vss xorc
+ x2 axb axbq vdd vss invter
+ x3 axb axbq c out vdd vss trg
  x4 a b g vdd vss ab
- x5 a b p vdd vss nor
- m0 out g vss vss n18ll w=0.265u l=0.18u
- m1 out p vdd vdd p18ll w=0.620u l=0.18u
+ x5 a b d vdd vss nor
+ m0 out g vdd vdd p18ll w=1.50u l=0.18u
+ m1 out d vss vss n18ll w=0.25u l=0.18u
  .ends
 
+ .subckt cc c a b out vdd vss
+ x1 a b axb vdd vss xorc
+ x2 axb axbq vdd vss invter
+ x3 axb axbq c out vdd vss trg
+ x4 a b g vdd vss ab
+ x5 a b d vdd vss nor
+ m0 out g vdd vdd p18ll w=1.50u l=0.18u
+ m1 out d vss vss n18ll w=0.25u l=0.18u
+ .ends
+
+ .subckt c c0 a0 a1 b0 b1 c1 c2 vdd vss
+ x1 c0 a0 b0 c1 vdd vss cc
+ x2 c1 a1 b1 c2 vdd vss cc
+ .ends
  *加负载
- x1 a b out vdd vss c0
- c1 out vss 0.2pf
+ x1 c0 a0 a1 b0 b1 c1 c2 vdd vss c
+ c1 c1 vss 0.2pf
+ c2 c2 vss 0.2pf
 
  *设置vdd
  vdd vdd 0 dc 'vddvalue_vdd'
@@ -72,12 +91,22 @@
  .param vddvalue_vss=0v
 
  *设置输入
- vin1 a 0 pwl 10ns 0v, 11ns 1.8v,50ns 1.8v,51ns 0v
- vin2 b 0 pwl 10ns 0v ,40ns 0v, 41ns 1.8v, 60ns 1.8v, 61ns 0v
+ vin1 a1 0 pwl 330ns 0v, 331ns 1.8v
+ vin0 a0 0 pwl 170ns 0v, 171ns 1.8v, 330ns 1.8v, 331ns 0v, 490ns 0v, 491ns 1.8v
+ vinb1 b1 0 pwl 90ns 0v, 91ns 1.8v, 170ns 1.8v, 171ns 0v, 250ns 0v, 251ns 1.8v, 
+ +330ns 1.8v, 331ns 0v, 410ns 0v, 411ns 1.8v, 490ns 1.8v, 491ns 0v, 570ns 0v, 
+ +571ns 1.8v
+ vinb0 b0 0 pwl 50ns 0v, 51ns 1.8v, 90ns 1.8v, 91ns 0v, 130ns 0v, 131ns 1.8v, 
+ +170ns 1.8v, 171ns 0v, 210ns 0v, 211ns 1.8v, 250ns 1.8v, 251ns 0v, 290ns 0v, 
+ +291ns 1.8v,330ns 1.8v, 331ns 0v, 370ns 0v, 371ns 1.8v, 410ns 1.8v, 411ns 0v, 
+ +450ns 0v, 451ns 1.8v, 490ns 1.8v, 491ns 0v, 530ns 0v, 531ns 1.8v, 570ns 1.8v, 
+ +571ns 0v, 610ns 0v, 611ns 1.8v
+
+ vinc c0 0
 
 
  *瞬态仿真
- .tran 1ns 80ns
+ .tran 1ns 650ns
  .ic q 0v
  .probe v(out) v(in)
 
@@ -113,35 +142,58 @@
  circuit number to circuit name directory
    number circuitname                     definition         multiplier
         0 main circuit
-        1 x1.                             c0                 1.00 
-        2 x1.x1.                          invter             1.00 
-        3 x1.x2.                          invter             1.00 
-        4 x1.x3.                          trg                1.00 
-        5 x1.x4.                          ab                 1.00 
-        6 x1.x5.                          nor                1.00 
-        7 x1.x4.x1.                       invter             1.00 
+        1 x1.                             c                  1.00 
+        2 x1.x1.                          cc                 1.00 
+        3 x1.x2.                          cc                 1.00 
+        4 x1.x1.x1.                       xorc               1.00 
+        5 x1.x1.x2.                       invter             1.00 
+        6 x1.x1.x3.                       trg                1.00 
+        7 x1.x1.x4.                       ab                 1.00 
+        8 x1.x1.x5.                       nor                1.00 
+        9 x1.x2.x1.                       xorc               1.00 
+       10 x1.x2.x2.                       invter             1.00 
+       11 x1.x2.x3.                       trg                1.00 
+       12 x1.x2.x4.                       ab                 1.00 
+       13 x1.x2.x5.                       nor                1.00 
+       14 x1.x1.x1.x1.                    invter             1.00 
+       15 x1.x1.x4.x1.                    invter             1.00 
+       16 x1.x2.x1.x1.                    invter             1.00 
+       17 x1.x2.x4.x1.                    invter             1.00 
 
  **warning** dc voltage reset to initial transient source value
              in source        0:vin1                new dc=  0.0000D+00
 
 
  **warning** dc voltage reset to initial transient source value
-             in source        0:vin2                new dc=  0.0000D+00
+             in source        0:vin0                new dc=  0.0000D+00
+
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vinb1               new dc=  0.0000D+00
+
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vinb0               new dc=  0.0000D+00
 
  
+
+ **warning**  attempt to reference undefined node     0:out             
+  in the definition of v(out,0)
+   branch - output ignored
 
  **warning**  attempt to reference undefined node     0:in              
   in the definition of v(in,0)
    branch - output ignored
 
+ **warning** print/plot=out0         of analysis=tran
+ contains unused outputs
+ this entire output statement is ignored
+
  
 
 
 
- **warning**  no dc path to ground from node        1:aq               defined in subckt c0              now it is connected with gdcpath
-
-
-
+ **warning**  no dc path to ground from node        7:outq             defined in subckt ab              now it is connected with gdcpath
 
 
 
@@ -157,12 +209,17 @@
 
   ******  operating point information tnom=  25.000 temp=  25.000 *****
  ***** operating point status is voltage   simulation time is     0.     
-    node    =voltage      node    =voltage      node    =voltage
+     node    =voltage       node    =voltage       node    =voltage
 
- +0:a       =   0.      0:b       =   0.      0:out     = 954.8394m
- +0:vdd     =   1.8000  0:vss     =   0.      1:aq      =   0.     
- +1:bq      =   0.      1:g       =   1.8000  1:p       =   1.8000 
- +5:ab      = 447.8335m 5:outq    =   0.      6:aob     =   1.8000 
+ + 0:a0      =   0.       0:a1      =   0.       0:b0      =   0.     
+ + 0:b1      =   0.       0:c0      =   0.       0:c1      =  15.2772n
+ + 0:c2      =  11.6019n  0:vdd     =   1.8000   0:vss     =   0.     
+ + 2:axb     =  13.9028n  2:axbq    =   1.8000   2:d       =   1.8000 
+ + 2:g       =   1.8000   3:axb     =  13.9028n  3:axbq    =   1.8000 
+ + 3:d       =   1.8000   3:g       =   1.8000   4:aq      =   1.8000 
+ + 7:ab      = 433.7440m  7:outq    =   0.       8:aob     =   1.8000 
+ + 9:aq      =   1.8000  12:ab      = 433.7440m 12:outq    =   0.     
+ +13:aob     =   1.8000 
 
 
           ***** job concluded
@@ -173,31 +230,31 @@
   ******  job statistics summary tnom=  25.000 temp=  25.000 *****
 
   ******  Circuit Statistics  ******
-  # nodes       =      49  # elements   =      23
-  # resistors   =       0  # capacitors =       1  # inductors   =       0
+  # nodes       =     114  # elements   =      53
+  # resistors   =       0  # capacitors =       2  # inductors   =       0
   # mutual_inds =       0  # vccs       =       0  # vcvs        =       0
-  # cccs        =       0  # ccvs       =       0  # volt_srcs   =       4
+  # cccs        =       0  # ccvs       =       0  # volt_srcs   =       7
   # curr_srcs   =       0  # diodes     =       0  # bjts        =       0
-  # jfets       =       0  # mosfets    =      18  # U elements  =       0
+  # jfets       =       0  # mosfets    =      44  # U elements  =       0
   # T elements  =       0  # W elements =       0  # B elements  =       0
   # S elements  =       0  # P elements =       0  # va device   =       0
 
 
   ******  Runtime Statistics (seconds)  ******
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.01           1          25
-  transient          0.05          81         236          81 rev=         4
-  readin             0.01
-  errchk             0.00
-  setup              0.01
+  op point           0.01           1          23
+  transient          0.20         651        1090         357 rev=        22
+  readin             0.00
+  errchk             0.02
+  setup              0.00
   output             0.00
 
 
-           total memory used          333  kbytes
-           total cpu time            0.10 seconds
+           total memory used          529  kbytes
+           total cpu time            0.30 seconds
            total elapsed time           1 seconds
-           job started at     11:29:58 12/23/2014
-           job ended   at     11:29:59 12/23/2014
+           job started at     15:47:56 12/23/2014
+           job ended   at     15:47:56 12/23/2014
 
 
  Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

@@ -16,14 +16,14 @@
   **warning** (E:\Program\ESE\Hspice\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
  .temp 25
 
- .subckt ab ina inb out vdd vss
+ .subckt nor ina inb out vdd vss
  m0 aob ina vdd vdd p18ll w=2.0u l=0.25u
  m1 out inb aob vdd p18ll w=2.0u l=0.25u
  m2 out ina vss vss n18ll w=0.25u l=0.25u
  m3 out inb vss vss n18ll w=0.25u l=0.25u
  .ends
 
- x1 ina inb out vdd vss ab
+ x1 ina inb out vdd vss nor
  c1 out vss 0.2pf
 
  vdd vdd 0 dc 'vddvalue_vdd'
@@ -69,7 +69,7 @@
  circuit number to circuit name directory
    number circuitname                     definition         multiplier
         0 main circuit
-        1 x1.                             ab                 1.00 
+        1 x1.                             nor                1.00 
 
  **warning** dc voltage reset to initial transient source value
              in source        0:vin1                new dc=  0.0000D+00
@@ -121,9 +121,9 @@
 
   ******  Runtime Statistics (seconds)  ******
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.01           1           7
-  transient          0.04          81         200          77 rev=         7
-  readin             0.01
+  op point           0.00           1           7
+  transient          0.05          81         200          77 rev=         7
+  readin             0.02
   errchk             0.00
   setup              0.00
   output             0.00
@@ -132,8 +132,8 @@
            total memory used          165  kbytes
            total cpu time            0.08 seconds
            total elapsed time           1 seconds
-           job started at     11:28:42 12/23/2014
-           job ended   at     11:28:42 12/23/2014
+           job started at     13:32:28 12/23/2014
+           job ended   at     13:32:28 12/23/2014
 
 
  Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

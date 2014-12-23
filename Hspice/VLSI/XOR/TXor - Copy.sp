@@ -10,21 +10,33 @@ M0 out in vdd vdd p18ll w=0.18u l=0.18u
 M1 out in vss vss n18ll w=0.18u l=0.18u
 .ends
 
+*定义共栅的p/nmos传输管
+.subckt Trpn st in1 in2 out vdd vss
+M0 out st in1 vdd p18ll w=2.4u l=0.18u
+M1 out st in2 vss n18ll w=0.18u l=0.18u
+.ends
+
+*定义传输门
+.subckt Tr st st2 in out vdd vss
+M0 out st in vdd p18ll w=1.4u l=0.18u
+M1 out st2 in vss n18ll w=0.18u l=0.18u
+.ends
 
 *XOR
 .subckt TX A B out vdd vss 
 x1 A AQ vdd vss invter
-*定义共栅的p/nmos传输管
+*x2 B A AQ out vdd vss Trpn
+*x3 A Aq B out vdd vss Tr
+
 M0 out B A vdd p18ll w=2.4u l=0.18u
 M1 out B AQ vss n18ll w=0.18u l=0.18u
-*以下是传输门
 M2 out A B vdd p18ll w=1.4u l=0.18u
 M3 out AQ B vss n18ll w=0.18u l=0.18u
 .ends
 
 *加负载
 x1 A B out vdd vss TX
-C1 out vss 0.2pf
+C1 out vss 0.3pf
 
 *设置vdd
 VDD vdd 0 dc 'vddvalue_vdd'

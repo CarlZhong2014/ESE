@@ -1,48 +1,40 @@
-ï»¿**TXor***
+**SUM2***
 .protect
 .lib 'E:\Program\ESE\Hspice\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.lib' TT
 .unprotect
 .temp 25
 
-*å®šä¹‰ä¸€ä¸ªåç›¸å™¨
 .subckt invter in out vdd vss
 M0 out in vdd vdd p18ll w=0.18u l=0.18u
 M1 out in vss vss n18ll w=0.18u l=0.18u
 .ends
 
-
-*XOR
-.subckt TX A B out vdd vss 
+.subckt trg A B out vdd vss
 x1 A AQ vdd vss invter
-*å®šä¹‰å…±æ …çš„p/nmosä¼ è¾“ç®¡
-M0 out B A vdd p18ll w=2.4u l=0.18u
-M1 out B AQ vss n18ll w=0.18u l=0.18u
-*ä»¥ä¸‹æ˜¯ä¼ è¾“é—¨
-M2 out A B vdd p18ll w=1.4u l=0.18u
-M3 out AQ B vss n18ll w=0.18u l=0.18u
+M0 out AQ B vdd p18ll w=1.5u l=0.18u
+M1 out A B vss n18ll w=0.18u l=0.18u
 .ends
 
-*åŠ è´Ÿè½½
-x1 A B out vdd vss TX
+*¼Ó¸ºÔØ
+x1 A B out vdd vss trg
 C1 out vss 0.2pf
 
-*è®¾ç½®vdd
+*ÉèÖÃvdd
 VDD vdd 0 dc 'vddvalue_vdd'
 .param vddvalue_vdd=1.8v
 
-*è®¾ç½®vss
+*ÉèÖÃvss
 VSS vss 0 dc 'vddvalue_vss'
 .param vddvalue_vss=0v
 
-*è®¾ç½®è¾“å…¥
-vin1 A 0 PWL 10ns 0v, 11ns 1.8v,30ns 1.8v,31ns 0v
+*ÉèÖÃÊäÈë
+vin1 A 0 PWL 10ns 0v, 11ns 1.8v
 vin2 B 0 PWL 10ns 0v ,40ns 0v, 41ns 1.8v, 60ns 1.8v, 61ns 0v
 
 
-*ç¬æ€ä»¿çœŸ
+*Ë²Ì¬·ÂÕæ
 .tran 1ns 80ns
 .ic Q 0v
 .PROBE v(out) v(in)
 
 .end
-

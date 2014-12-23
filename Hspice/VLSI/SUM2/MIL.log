@@ -1,18 +1,19 @@
 pnlAddPane();
 nil
 1
-designOpen("e:\\program\\ese\\hspice\\vlsi\\xor\\txor.sp");
+designOpen("e:\\program\\ese\\hspice\\vlsi\\sum2\\sum.sp");
 "D0"
 t
 pnlAddCurve(1, node(D0,"A0","v(a)"), node(D0,"A0","TIME"));
 nil
 pnlAddCurve(1, node(D0,"A0","v(b)"), node(D0,"A0","TIME"));
 nil
+pnlAddCurve(1, node(D0,"A0","v(c)"), node(D0,"A0","TIME"));
+nil
 pnlAddCurve(1, node(D0,"A0","v(out)"), node(D0,"A0","TIME"));
 nil
+quit();
+exit
 pnlDeletePane(1, 1);
-nil
-nil
-1);
 nil
 nil

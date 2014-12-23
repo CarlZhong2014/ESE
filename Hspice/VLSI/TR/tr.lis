@@ -6,7 +6,7 @@
     D:\synopsys\Hspice_A-2008.03-SP1\license.warn
   Use of this program is your acceptance to be bound by this 
   license agreement. HSPICE is the trademark of Synopsys, Inc.
-  Input File: e:\program\ese\hspice\vlsi\ab\and.sp                              
+  Input File: e:\program\ese\hspice\vlsi\tr\tr.sp                               
  Init: read install configuration file: D:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
  Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
 
@@ -16,31 +16,35 @@
   **warning** (E:\Program\ESE\Hspice\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
  .temp 25
 
- .subckt invter in out vdd vss 
- m1 out in vdd vdd p18ll  w=1.5u l=0.18u
- m0 out in vss vss n18ll  w=0.5u l=0.18u
+ .subckt invter in out vdd vss
+ m0 out in vdd vdd p18ll w=0.18u l=0.18u
+ m1 out in vss vss n18ll w=0.18u l=0.18u
  .ends
 
- .subckt ab ina inb out vdd vss
- m0 outq ina vdd vdd p18ll w=2.0u l=0.25u
- m1 outq inb vdd vdd p18ll w=2.0u l=0.25u
- m2 outq ina ab vss n18ll w=1.0u l=0.25u
- m3 ab inb vss vss n18ll w=1.0u l=0.25u
- x1 outq out vdd vss invter
+ .subckt trg a b out vdd vss
+ x1 a aq vdd vss invter
+ m0 out aq b vdd p18ll w=1.5u l=0.18u
+ m1 out a b vss n18ll w=0.18u l=0.18u
  .ends
 
- x1 ina inb out vdd vss ab
+ *加负载
+ x1 a b out vdd vss trg
  c1 out vss 0.2pf
 
+ *设置vdd
  vdd vdd 0 dc 'vddvalue_vdd'
  .param vddvalue_vdd=1.8v
 
+ *设置vss
  vss vss 0 dc 'vddvalue_vss'
  .param vddvalue_vss=0v
 
- vin1 ina 0 pwl 30ns 0v , 31ns 1.8v
- vin2 inb 0 pwl 10ns 0v ,11ns 1.8v, 40ns 1.8v, 41ns 0v
+ *设置输入
+ vin1 a 0 pwl 10ns 0v, 11ns 1.8v
+ vin2 b 0 pwl 10ns 0v ,40ns 0v, 41ns 1.8v, 60ns 1.8v, 61ns 0v
 
+
+ *瞬态仿真
  .tran 1ns 80ns
  .ic q 0v
  .probe v(out) v(in)
@@ -69,13 +73,13 @@
 
 1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
  ******  
- **ab***
+ **sum2***
 
   ******  circuit name directory
  circuit number to circuit name directory
    number circuitname                     definition         multiplier
         0 main circuit
-        1 x1.                             ab                 1.00 
+        1 x1.                             trg                1.00 
         2 x1.x1.                          invter             1.00 
 
  **warning** dc voltage reset to initial transient source value
@@ -94,54 +98,53 @@
  
       
   Opening plot unit= 79
- file=e:\program\ese\hspice\vlsi\ab\and.pa0                                    
+ file=e:\program\ese\hspice\vlsi\tr\tr.pa0                                     
 
 1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
  ******  
- **ab***
+ **sum2***
 
   ******  operating point information tnom=  25.000 temp=  25.000 *****
  ***** operating point status is voltage   simulation time is     0.     
     node    =voltage      node    =voltage      node    =voltage
 
- +0:ina     =   0.      0:inb     =   0.      0:out     =   4.4660n
- +0:vdd     =   1.8000  0:vss     =   0.      1:ab      = 447.8335m
- +1:outq    =   1.8000 
+ +0:a       =   0.      0:b       =   0.      0:out     = 436.9902m
+ +0:vdd     =   1.8000  0:vss     =   0.      1:aq      =   1.8000 
 
 
           ***** job concluded
 1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
  ******  
- **ab***
+ **sum2***
 
   ******  job statistics summary tnom=  25.000 temp=  25.000 *****
 
   ******  Circuit Statistics  ******
-  # nodes       =      20  # elements   =      11
+  # nodes       =      15  # elements   =       9
   # resistors   =       0  # capacitors =       1  # inductors   =       0
   # mutual_inds =       0  # vccs       =       0  # vcvs        =       0
   # cccs        =       0  # ccvs       =       0  # volt_srcs   =       4
   # curr_srcs   =       0  # diodes     =       0  # bjts        =       0
-  # jfets       =       0  # mosfets    =       6  # U elements  =       0
+  # jfets       =       0  # mosfets    =       4  # U elements  =       0
   # T elements  =       0  # W elements =       0  # B elements  =       0
   # S elements  =       0  # P elements =       0  # va device   =       0
 
 
   ******  Runtime Statistics (seconds)  ******
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.00           1          16
-  transient          0.05          81         184          68 rev=         4
-  readin             0.02
-  errchk             0.00
-  setup              0.01
+  op point           0.00           1          14
+  transient          0.05          81         169          66 rev=         4
+  readin             0.00
+  errchk             0.02
+  setup              0.00
   output             0.00
 
 
-           total memory used          169  kbytes
-           total cpu time            0.09 seconds
+           total memory used          165  kbytes
+           total cpu time            0.06 seconds
            total elapsed time           1 seconds
-           job started at     13:31:38 12/23/2014
-           job ended   at     13:31:39 12/23/2014
+           job started at     14:26:06 12/23/2014
+           job ended   at     14:26:06 12/23/2014
 
 
  Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

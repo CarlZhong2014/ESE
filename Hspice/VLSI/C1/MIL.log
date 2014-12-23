@@ -4,11 +4,17 @@ nil
 designOpen("e:\\program\\ese\\hspice\\vlsi\\c1\\c1.sp");
 "D0"
 t
-pnlAddCurve(1, node(D0,"A0","v(a)"), node(D0,"A0","TIME"));
+pnlAddCurve(1, node(D0,"A0","v(a0)"), node(D0,"A0","TIME"));
 nil
-pnlAddCurve(1, node(D0,"A0","v(b)"), node(D0,"A0","TIME"));
+pnlAddCurve(1, node(D0,"A0","v(b0)"), node(D0,"A0","TIME"));
 nil
-pnlAddCurve(1, node(D0,"A0","v(out)"), node(D0,"A0","TIME"));
+pnlAddCurve(1, node(D0,"A0","v(a1)"), node(D0,"A0","TIME"));
+nil
+pnlAddCurve(1, node(D0,"A0","v(b1)"), node(D0,"A0","TIME"));
+nil
+pnlAddCurve(1, node(D0,"A0","v(c1)"), node(D0,"A0","TIME"));
+nil
+pnlAddCurve(1, node(D0,"A0","v(c2)"), node(D0,"A0","TIME"));
 nil
 quit();
 exit

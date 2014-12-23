@@ -1,7 +1,7 @@
 * "simulator" "HSPICE" 
 * "version" "A-2008.03-SP1 32-BIT"
 * "format" "HSP"
-* "rundate" "11:29:58 12/23/2014 "
+* "rundate" "15:47:56 12/23/2014 "
 * "netlist" "e:\program\ese\hspice\vlsi\c1\c1.sp "
 * "runtitle" "﻿**c1***"
 * time =    0.            
@@ -10,16 +10,29 @@
 .option 
 + gmindc=   1.0000p       
 .nodeset
-+ a =   0.            
-+ b =   0.            
-+ out = 954.8394m       
++ a0 =   0.            
++ a1 =   0.            
++ b0 =   0.            
++ b1 =   0.            
++ c0 =   0.            
++ c1 =  15.2772n       
++ c2 =  11.6019n       
 + vdd =   1.8000        
 + vss =   0.            
-+ x1.aq =   0.            
-+ x1.bq =   0.            
-+ x1.g =   1.8000        
-+ x1.p =   1.8000        
-+ x1.x4.ab = 447.8335m       
-+ x1.x4.outq =   0.            
-+ x1.x5.aob =   1.8000        
++ x1.x1.axb =  13.9028n       
++ x1.x1.axbq =   1.8000        
++ x1.x1.d =   1.8000        
++ x1.x1.g =   1.8000        
++ x1.x2.axb =  13.9028n       
++ x1.x2.axbq =   1.8000        
++ x1.x2.d =   1.8000        
++ x1.x2.g =   1.8000        
++ x1.x1.x1.aq =   1.8000        
++ x1.x1.x4.ab = 433.7440m       
++ x1.x1.x4.outq =   0.            
++ x1.x1.x5.aob =   1.8000        
++ x1.x2.x1.aq =   1.8000        
++ x1.x2.x4.ab = 433.7440m       
++ x1.x2.x4.outq =   0.            
++ x1.x2.x5.aob =   1.8000        
 ***   END: Saved Operating Point ***                     

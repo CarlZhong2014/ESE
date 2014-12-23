@@ -1,19 +1,19 @@
 * "simulator" "HSPICE" 
 * "version" "A-2008.03-SP1 32-BIT"
 * "format" "HSP"
-* "rundate" "13:32:28 12/23/2014 "
-* "netlist" "e:\program\ese\hspice\vlsi\nor\nor.sp "
-* "runtitle" "**nor***"
+* "rundate" "14:26:06 12/23/2014 "
+* "netlist" "e:\program\ese\hspice\vlsi\tr\tr.sp "
+* "runtitle" "**sum2***"
 * time =    0.            
 * temperature =   25.0000        
 *** BEGIN: Saved Operating Point ***                     
 .option 
 + gmindc=   1.0000p       
 .nodeset
-+ ina =   0.            
-+ inb =   0.            
-+ out =   1.8000        
++ a =   0.            
++ b =   0.            
++ out = 436.9902m       
 + vdd =   1.8000        
 + vss =   0.            
-+ x1.aob =   1.8000        
++ x1.aq =   1.8000        
 ***   END: Saved Operating Point ***                     

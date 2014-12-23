@@ -3,47 +3,40 @@
   Unpublished-rights reserved under US copyright laws.
   This program is protected by law and is subject to the 
   terms and conditions of the license agreement found in:
-    C:\synopsys\Hspice_A-2008.03-SP1\license.warn
+    D:\synopsys\Hspice_A-2008.03-SP1\license.warn
   Use of this program is your acceptance to be bound by this 
   license agreement. HSPICE is the trademark of Synopsys, Inc.
-  Input File: c:\lab\vlsi\project\xor\txor.sp                                   
- Init: read install configuration file: C:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
- Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+  Input File: e:\program\ese\hspice\vlsi\xor\txor.sp                            
+ Init: read install configuration file: D:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
+ Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
 
 
 
 
-  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
+  **warning** (E:\Program\ESE\Hspice\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
  .temp 25
 
  *定义一个反相器
- .subckt inv in out vdd vss
+ .subckt invter in out vdd vss
  m0 out in vdd vdd p18ll w=0.18u l=0.18u
  m1 out in vss vss n18ll w=0.18u l=0.18u
  .ends
 
- *定义共栅的p/nmos传输管
- .subckt trpn st in1 in2 out vdd vss
- m0 out st in1 vdd p18ll w=2.4u l=0.18u
- m1 out st in2 vss n18ll w=0.18u l=0.18u
- .ends
 
- *定义传输门
- .subckt tr st st2 in out vdd vss
- m0 out st in vdd p18ll w=1.4u l=0.18u
- m1 out st2 in vss n18ll w=0.18u l=0.18u
- .ends
-
- *设计电路
+ *xor
  .subckt tx a b out vdd vss 
- x1 a aq vdd vss inv
- x2 b a aq out vdd vss trpn
- x3 a aq b out vdd vss tr
+ x1 a aq vdd vss invter
+ *定义共栅的p/nmos传输管
+ m0 out b a vdd p18ll w=2.4u l=0.18u
+ m1 out b aq vss n18ll w=0.18u l=0.18u
+ *以下是传输门
+ m2 out a b vdd p18ll w=1.4u l=0.18u
+ m3 out aq b vss n18ll w=0.18u l=0.18u
  .ends
 
  *加负载
  x1 a b out vdd vss tx
- c1 out vss 0.3pf
+ c1 out vss 0.2pf
 
  *设置vdd
  vdd vdd 0 dc 'vddvalue_vdd'
@@ -96,9 +89,7 @@
    number circuitname                     definition         multiplier
         0 main circuit
         1 x1.                             tx                 1.00 
-        2 x1.x1.                          inv                1.00 
-        3 x1.x2.                          trpn               1.00 
-        4 x1.x3.                          tr                 1.00 
+        2 x1.x1.                          invter             1.00 
 
  **warning** dc voltage reset to initial transient source value
              in source        0:vin1                new dc=  0.0000D+00
@@ -116,7 +107,7 @@
  
       
   Opening plot unit= 79
- file=c:\lab\vlsi\project\xor\txor.pa0                                         
+ file=e:\program\ese\hspice\vlsi\xor\txor.pa0                                  
 
 1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
  ******  
@@ -150,19 +141,19 @@
 
   ******  Runtime Statistics (seconds)  ******
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.00           1           8
-  transient          0.08          81         241          91 rev=         6
-  readin             0.03
+  op point           0.01           1           8
+  transient          0.06          81         239          91 rev=         6
+  readin             0.02
   errchk             0.00
-  setup              0.01
+  setup              0.00
   output             0.00
 
 
-           total memory used          171  kbytes
-           total cpu time            0.17 seconds
+           total memory used          169  kbytes
+           total cpu time            0.09 seconds
            total elapsed time           1 seconds
-           job started at     22:02:51 12/21/2014
-           job ended   at     22:02:51 12/21/2014
+           job started at     14:49:03 12/23/2014
+           job ended   at     14:49:03 12/23/2014
 
 
- Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+ Init: hspice initialization file: D:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

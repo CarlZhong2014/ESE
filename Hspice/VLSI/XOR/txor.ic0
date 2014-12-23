@@ -1,8 +1,8 @@
 * "simulator" "HSPICE" 
 * "version" "A-2008.03-SP1 32-BIT"
 * "format" "HSP"
-* "rundate" "22:02:51 12/21/2014 "
-* "netlist" "c:\lab\vlsi\project\xor\txor.sp "
+* "rundate" "14:49:03 12/23/2014 "
+* "netlist" "e:\program\ese\hspice\vlsi\xor\txor.sp "
 * "runtitle" "﻿**txor***"
 * time =    0.            
 * temperature =   25.0000        

@@ -1,7 +1,7 @@
 * "simulator" "HSPICE" 
 * "version" "A-2008.03-SP1 32-BIT"
 * "format" "HSP"
-* "rundate" "11:21:35 12/23/2014 "
+* "rundate" "13:31:38 12/23/2014 "
 * "netlist" "e:\program\ese\hspice\vlsi\ab\and.sp "
 * "runtitle" "**ab***"
 * time =    0.            
