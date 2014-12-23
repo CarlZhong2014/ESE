@@ -1,0 +1,20 @@
+***** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******
+ Input File: c:\lab\vlsi\project\c1\c1.sp
+ lic:
+ lic: FLEXlm: v8.5b
+ lic: USER:   labxp                HOSTNAME: lab-13d91ae8248
+ lic: HOSTID: 000c29c454eb         PID:      1608
+ lic: Using FLEXlm license file:
+ lic: E:\synopsys\Hspice_A-2008.03-SP1\hspice_2008-03.lic
+ lic: Checkout 1 hspice
+ lic: License/Maintenance for hspice will expire on 31-dec-2020/2007.9
+ lic: NODE LOCKED license on hostid 000c29c454eb
+ lic:
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+ init: begin read circuit files,  cpu clock=  7.80E-02
+ init: end read circuit files,  cpu clock=  9.40E-02 memory=    145 kb
+ init: begin check errors,  cpu clock=  9.40E-02
+difficulty in reading input
+>error          ***** hspice job aborted
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+ init: begin read circuit files,  cpu clock=  1.09E-01

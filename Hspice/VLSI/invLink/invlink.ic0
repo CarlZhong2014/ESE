@@ -1,0 +1,18 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03-SP1 32-BIT"
+* "format" "HSP"
+* "rundate" "19:14:33 12/17/2014 "
+* "netlist" "c:\lab\vlsi\project\invlink\invlink.sp "
+* "runtitle" "﻿**invlink**"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ in =   0.            
++ out =   4.4040n       
++ vdd =   1.8000        
++ vss =   0.            
++ x1.outq =   1.8000        
+***   END: Saved Operating Point ***                     

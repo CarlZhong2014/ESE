@@ -1,0 +1,140 @@
+ ****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+  Copyright (C) 2008 Synopsys, Inc. All Rights Reserved.                        
+  Unpublished-rights reserved under US copyright laws.
+  This program is protected by law and is subject to the 
+  terms and conditions of the license agreement found in:
+    C:\synopsys\Hspice_A-2008.03-SP1\license.warn
+  Use of this program is your acceptance to be bound by this 
+  license agreement. HSPICE is the trademark of Synopsys, Inc.
+  Input File: c:\lab\vlsi\project\invlink\invlink.sp                            
+ Init: read install configuration file: C:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+
+
+
+
+  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
+ .temp 25
+
+ *invter link
+ .subckt invlin in out vdd vss 
+ m0 outq in vss vss n18ll w=0.265u l=0.18u
+ m1 outq in vdd vdd p18ll w=0.620u l=0.18u
+ m2 out outq vss vss n18ll w=0.50u l=0.18u 
+ m3 out outq vdd vdd p18ll w=1.20u l=0.18u 
+ .ends
+
+
+ *加负载
+ x1 in out vdd vss invlin
+ c1 out vss 0.3pf
+
+ *设置vdd
+ vdd vdd 0 dc 'vddvalue_vdd'
+ .param vddvalue_vdd=1.8v
+
+ *设置vss
+ vss vss 0 dc 'vddvalue_vss'
+ .param vddvalue_vss=0v
+
+ *设置输入
+ vin2 in 0 pwl 10ns 0v ,40ns 0v, 41ns 1.8v, 60ns 1.8v, 61ns 0v
+
+
+ *瞬态仿真
+ .tran 1ns 80ns
+ .ic q 0v
+ .probe v(out) v(in)
+
+ .end
+
+ ***********************************************************************
+ ** runlvl is invoked, you can disable it by:
+      a) Add option runlvl=0 to your current simulation job.
+      b) Copy $installdir/hspice.ini to your HOME directory and
+         customize it by adding option runlvl=0, which disables
+         it for all of your simulation jobs.
+      c) Re-invoke $installdir/bin/config program and unselect the
+         option runlvl setting in box 'hspice.ini' which disables
+         it for whole group simulation jobs.
+
+ ** runlvl is invoked, some options are ignored or automatically set:
+      Options below are automatically set(user setting will overwrite them):
+      if runlvl=[1|2|3|4|5|6],  .option bypass=2
+
+      Options below are ignored, they are replaced by automated algorithms:
+        lvltim    dvdt      ft    fast   trtol  absvar  relvar
+          relq  chgtol    dvtr    imin    itl3    rmax
+
+ ** runlvl is invoked, actual option value used by HSPICE are:
+       runlvl= 3       bypass= 2      mbypass=   2.00   bytol= 100.00u
+ ***********************************************************************
+
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ ﻿**invlink**
+
+  ******  circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 x1.                             invlin             1.00 
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vin2                new dc=  0.0000D+00
+
+ 
+
+ 
+      
+  Opening plot unit= 79
+ file=c:\lab\vlsi\project\invlink\invlink.pa0                                  
+
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ ﻿**invlink**
+
+  ******  operating point information tnom=  25.000 temp=  25.000 *****
+ ***** operating point status is voltage   simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:in      =   0.      0:out     =   4.4040n 0:vdd     =   1.8000 
+ +0:vss     =   0.      1:outq    =   1.8000 
+
+
+          ***** job concluded
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ ﻿**invlink**
+
+  ******  job statistics summary tnom=  25.000 temp=  25.000 *****
+
+  ******  Circuit Statistics  ******
+  # nodes       =      14  # elements   =       8
+  # resistors   =       0  # capacitors =       1  # inductors   =       0
+  # mutual_inds =       0  # vccs       =       0  # vcvs        =       0
+  # cccs        =       0  # ccvs       =       0  # volt_srcs   =       3
+  # curr_srcs   =       0  # diodes     =       0  # bjts        =       0
+  # jfets       =       0  # mosfets    =       4  # U elements  =       0
+  # T elements  =       0  # W elements =       0  # B elements  =       0
+  # S elements  =       0  # P elements =       0  # va device   =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.00           1           7
+  transient          0.09          81         137          54 rev=         3
+  readin             0.02
+  errchk             0.01
+  setup              0.00
+  output             0.00
+
+
+           total memory used          165  kbytes
+           total cpu time            0.16 seconds
+           total elapsed time           1 seconds
+           job started at     19:14:33 12/17/2014
+           job ended   at     19:14:33 12/17/2014
+
+
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

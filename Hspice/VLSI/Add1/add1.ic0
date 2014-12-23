@@ -1,0 +1,26 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03-SP1 32-BIT"
+* "format" "HSP"
+* "rundate" "06:24:40 12/21/2014 "
+* "netlist" "c:\lab\vlsi\project\add1\add1.sp "
+* "runtitle" "﻿**add2***"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ a =   0.            
++ b =   0.            
++ c =   0.            
++ out =   4.6538n       
++ vdd =   1.8000        
++ vss =   0.            
++ x1.o =  13.9028n       
++ x1.ol =  13.0607n       
++ x1.outl =  26.9636n       
++ x1.x1.aq =   1.8000        
++ x1.x2.outq =   1.8000        
++ x1.x3.aq =   1.8000        
++ x1.x4.outq =   1.8000        
+***   END: Saved Operating Point ***                     

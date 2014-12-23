@@ -1,0 +1,20 @@
+pnlAddPane();
+nil
+1
+designOpen("c:\\lab\\vlsi\\project\\c1\\ab.sp");
+"D0"
+t
+pnlAddCurve(1, node(D0,"A0","v(a)"), node(D0,"A0","TIME"));
+nil
+pnlAddCurve(1, node(D0,"A0","v(b)"), node(D0,"A0","TIME"));
+nil
+pnlAddCurve(1, node(D0,"A0","v(out)"), node(D0,"A0","TIME"));
+nil
+pnlDeletePane(1, 1);
+nil
+nil
+SelectPane(1);
+nil
+pnlDeletePane(1, 1);
+nil
+nil

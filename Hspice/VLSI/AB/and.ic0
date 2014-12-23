@@ -1,0 +1,19 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03-SP1 32-BIT"
+* "format" "HSP"
+* "rundate" "22:26:59 12/21/2014 "
+* "netlist" "c:\lab\vlsi\project\ab\and.sp "
+* "runtitle" "**ab***"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ ina =   0.            
++ inb =   0.            
++ out =   1.8000        
++ vdd =   1.8000        
++ vss =   0.            
++ x1.ab = 428.2453m       
+***   END: Saved Operating Point ***                     

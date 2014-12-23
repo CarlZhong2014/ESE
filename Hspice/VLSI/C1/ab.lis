@@ -1,0 +1,153 @@
+ ****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+  Copyright (C) 2008 Synopsys, Inc. All Rights Reserved.                        
+  Unpublished-rights reserved under US copyright laws.
+  This program is protected by law and is subject to the 
+  terms and conditions of the license agreement found in:
+    C:\synopsys\Hspice_A-2008.03-SP1\license.warn
+  Use of this program is your acceptance to be bound by this 
+  license agreement. HSPICE is the trademark of Synopsys, Inc.
+  Input File: c:\lab\vlsi\project\c1\ab.sp                                      
+ Init: read install configuration file: C:\synopsys\Hspice_A-2008.03-SP1\meta.cfg
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini
+
+
+
+
+  **warning** (C:\lab\VLSI\TD-LO18-SP-2003v4R\l018ll_io50_v1p3.mdl:50)  associated with encrypted blocks were suppressed due to encrypted content
+ .temp 25
+
+ .subckt trg gp gn in out vdd vss
+ m0 out gp in vdd p18ll w=1.5u l=0.18u
+ m1 out gn in vss n18ll w=0.18u l=0.18u
+ .ends
+
+
+ .subckt invter in out vdd vss 
+ m0 out in vss vss n18ll l=0.18u w=0.5u 
+ m1 out in vdd vdd p18ll l=0.18u w=1.5u 
+ .ends
+
+ .subckt and a b out vdd vss 
+ x1 a aq vdd vss invter
+ x2 aq a b outq vdd vss trg
+ x3 outq out vdd vss invter
+ .ends
+
+ x1 a b out vdd vss and
+ c1 out vss 0.3pf
+
+ vdd vdd 0 dc 'vddvalue_vdd'
+ .param vddvalue_vdd=1.8v
+
+ vss vss 0 dc 'vddvalue_vss'
+ .param vddvalue_vss=0v
+
+ vin1 a 0 pwl 30ns 0v , 31ns 1.8v
+ vin2 b 0 pwl 10ns 0v ,11ns 1.8v, 40ns 1.8v, 41ns 0v
+
+ .tran 1ns 80ns
+ .ic q 0v
+ .probe v(out) v(in)
+
+ ***********************************************************************
+ ** runlvl is invoked, you can disable it by:
+      a) Add option runlvl=0 to your current simulation job.
+      b) Copy $installdir/hspice.ini to your HOME directory and
+         customize it by adding option runlvl=0, which disables
+         it for all of your simulation jobs.
+      c) Re-invoke $installdir/bin/config program and unselect the
+         option runlvl setting in box 'hspice.ini' which disables
+         it for whole group simulation jobs.
+
+ ** runlvl is invoked, some options are ignored or automatically set:
+      Options below are automatically set(user setting will overwrite them):
+      if runlvl=[1|2|3|4|5|6],  .option bypass=2
+
+      Options below are ignored, they are replaced by automated algorithms:
+        lvltim    dvdt      ft    fast   trtol  absvar  relvar
+          relq  chgtol    dvtr    imin    itl3    rmax
+
+ ** runlvl is invoked, actual option value used by HSPICE are:
+       runlvl= 3       bypass= 2      mbypass=   2.00   bytol= 100.00u
+ ***********************************************************************
+
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ **ab***
+
+  ******  circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 x1.                             and                1.00 
+        2 x1.x1.                          invter             1.00 
+        3 x1.x2.                          trg                1.00 
+        4 x1.x3.                          invter             1.00 
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vin1                new dc=  0.0000D+00
+
+
+ **warning** dc voltage reset to initial transient source value
+             in source        0:vin2                new dc=  0.0000D+00
+
+ 
+
+ **warning**  attempt to reference undefined node     0:in              
+  in the definition of v(in,0)
+   branch - output ignored
+
+ 
+      
+  Opening plot unit= 79
+ file=c:\lab\vlsi\project\c1\ab.pa0                                            
+
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ **ab***
+
+  ******  operating point information tnom=  25.000 temp=  25.000 *****
+ ***** operating point status is voltage   simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:a       =   0.      0:b       =   0.      0:out     =   1.7999 
+ +0:vdd     =   1.8000  0:vss     =   0.      1:aq      =   1.8000 
+ +1:outq    = 436.9902m
+
+
+          ***** job concluded
+1****** HSPICE -- A-2008.03-SP1 32-BIT (May 26 2008) winnt ******               
+ ******  
+ **ab***
+
+  ******  job statistics summary tnom=  25.000 temp=  25.000 *****
+
+  ******  Circuit Statistics  ******
+  # nodes       =      20  # elements   =      11
+  # resistors   =       0  # capacitors =       1  # inductors   =       0
+  # mutual_inds =       0  # vccs       =       0  # vcvs        =       0
+  # cccs        =       0  # ccvs       =       0  # volt_srcs   =       4
+  # curr_srcs   =       0  # diodes     =       0  # bjts        =       0
+  # jfets       =       0  # mosfets    =       6  # U elements  =       0
+  # T elements  =       0  # W elements =       0  # B elements  =       0
+  # S elements  =       0  # P elements =       0  # va device   =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.00           1          18
+  transient          0.08          81         190          71 rev=         5
+  readin             0.03
+  errchk             0.00
+  setup              0.01
+  output             0.00
+
+
+           total memory used          170  kbytes
+           total cpu time            0.17 seconds
+           total elapsed time           1 seconds
+           job started at     22:06:16 12/21/2014
+           job ended   at     22:06:16 12/21/2014
+
+
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03-SP1\hspice.ini

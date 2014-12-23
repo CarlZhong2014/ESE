@@ -1,0 +1,17 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03-SP1 32-BIT"
+* "format" "HSP"
+* "rundate" "19:49:09 12/17/2014 "
+* "netlist" "c:\lab\vlsi\project\invter\invter.sp "
+* "runtitle" "invter"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ in =   0.            
++ out =   1.8000        
++ vdd =   1.8000        
++ vss =   0.            
+***   END: Saved Operating Point ***                     

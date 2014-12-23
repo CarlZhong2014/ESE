@@ -1,0 +1,19 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03-SP1 32-BIT"
+* "format" "HSP"
+* "rundate" "22:02:51 12/21/2014 "
+* "netlist" "c:\lab\vlsi\project\xor\txor.sp "
+* "runtitle" "﻿**txor***"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ a =   0.            
++ b =   0.            
++ out =  13.9028n       
++ vdd =   1.8000        
++ vss =   0.            
++ x1.aq =   1.8000        
+***   END: Saved Operating Point ***                     

@@ -1,0 +1,31 @@
+pnlAddPane();
+nil
+1
+designOpen("c:\\lab\\vlsi\\project\\invlink\\invlink.sp");
+"D0"
+t
+pnlAddCurve(1, node(D0,"A0","v(in)"), node(D0,"A0","TIME"));
+nil
+pnlAddCurve(1, node(D0,"A0","v(out)"), node(D0,"A0","TIME"));
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+quit();
+exit
+pnlDeletePane(1, 1);
+nil
+nil
