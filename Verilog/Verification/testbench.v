@@ -5,7 +5,6 @@ reg rs_tx;  					//发送数据
 wire rs_rx;						//接收数据
 parameter  CLOCK_PERIOD = 20;	//最小时钟周期50MHz
 parameter  SXRX_SCALE = 104167; //设置波特率
-parameter  max = 512;			//设置最大的激励数
 reg [7:0]sd_tmp,rd_tmp;		//等待发送的数据和接收的数据 
 integer num,msum,umsum;			//计数和设定随机激励个数变量。
 reg ren;						//接收使能端
@@ -30,30 +29,29 @@ initial 						//初始化
 		#(CLOCK_PERIOD*1) Ret_n = 1;
 		rs_tx = 1;
 		ren = 1'b0;
-		num=8'd0;
 		umsum = 0;
 		msum = 0 ;
-		mfs=$fopen("C:\Users\CarlZhong\Desktop\verification\mfs.txt");
-		umfs=$fopen("C:\Users\CarlZhong\Desktop\verification\umfs.txt");
-		mlog=$fopen("C:\Users\CarlZhong\Desktop\verification\mlog.txt");
+		mfs=$fopen("mfs.txt");
+		umfs=$fopen("umfs.txt");
+		mlog=$fopen("mlog.txt");
 	end
 
 initial							//验证主体
 	begin:verification
-		
-		while (num <=5)
+		#(CLOCK_PERIOD*5) num=8'd0;
+		while (num <50)
 		begin
-			#(SXRX_SCALE*15) ramsim(sd_tmp);	//长延迟是为了避免在接受数据时，发送新的数据，从而扰乱结果。
+			#(SXRX_SCALE*15) ransim(sd_tmp);	//长延迟是为了避免在接受数据时，发送新的数据，从而扰乱结果。
 			#SXRX_SCALE std();
 			num = num+1'b1;
 		end
-		#(SXRX_SCALE * 50 * 6 )traversal();
+		#(SXRX_SCALE* 15* 55) sd_tmp=8'd0;
+		num=8'd0;
+		#SXRX_SCALE traversal();
 	end
 task traversal;
 begin
-	sd_tmp=8'd0;
-		
-	while (num<256)
+ while (num<256)
 		begin
 			std();
 			num = num+1'b1;
@@ -77,6 +75,15 @@ begin
             low_data = {$random} % 10;//个位		 
 		data = {high_data,mid_data, low_data};
 	    end
+end
+endtask
+
+task ransim;					//产生随机激励
+	output[7:0] data;
+	reg[7:0] LDdata;
+begin
+	LDdata = {$random} % 256;
+	data = LDdata;
 end
 endtask
 
@@ -126,11 +133,13 @@ begin
 	if (rd_tmp==sd_tmp)
 	begin
 		$fdisplay(mfs,"  (%d) tx = %b and rx = %b is match",num, sd_tmp, rd_tmp);
+		$display("  (%d) tx = %b and rx = %b is match",num, sd_tmp, rd_tmp);
 		msum = msum + 1;
 	end
 	else
 	begin
 		$fdisplay(umfs,"error : (%d) tx = %b and rx = %b isn't match!!!",num, sd_tmp, rd_tmp);
+		$display("error : (%d) tx = %b and rx = %b isn't match!!!",num, sd_tmp, rd_tmp);
 		umsum = umsum + 1; 
 	end
 end
@@ -139,8 +148,8 @@ endtask
 initial
 	begin
 		$fmonitor(mlog,$time,,,"tx=%b rx=%b", sd_tmp, rd_tmp);
-		
-		# (max * 50 * SXRX_SCALE) begin 	
+		$monitor($time,,,"tx=%b rx=%b", sd_tmp, rd_tmp);
+		# (8800 * SXRX_SCALE) begin 	
 				$fdisplay(mlog,"Test successfully \n Report : \n unmatch sum = %d  \n match sum = %d ", umsum, msum);
 				end
 			
