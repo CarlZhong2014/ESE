@@ -1,5 +1,5 @@
 `timescale 1ns / 1ns
-module uart_testbeach();
+module uart_testbench();
 reg Clk, Ret_n;
 reg rs_tx;  					//发送数据
 wire rs_rx;						//接收数据
@@ -9,6 +9,7 @@ parameter  max = 512;			//设置最大的激励数
 reg [7:0]sd_tmp,rd_tmp;		//等待发送的数据和接收的数据 
 integer num,msum,umsum;			//计数和设定随机激励个数变量。
 reg ren;						//接收使能端
+integer mfs,umfs,mlog;
 
 my_uart_top uart (				//实例化
 				.clk(Clk),.rst_n(Ret_n),
@@ -32,18 +33,21 @@ initial 						//初始化
 		num=8'd0;
 		umsum = 0;
 		msum = 0 ;
+		mfs=$fopen("C:\Users\CarlZhong\Desktop\verification\mfs.txt");
+		umfs=$fopen("C:\Users\CarlZhong\Desktop\verification\umfs.txt");
+		mlog=$fopen("C:\Users\CarlZhong\Desktop\verification\mlog.txt");
 	end
 
 initial							//验证主体
 	begin:verification
 		
-		while (num <=256)
+		while (num <=5)
 		begin
 			#(SXRX_SCALE*15) ramsim(sd_tmp);	//长延迟是为了避免在接受数据时，发送新的数据，从而扰乱结果。
 			#SXRX_SCALE std();
 			num = num+1'b1;
 		end
-		#(SXRX_SCALE *15 )traversal();
+		#(SXRX_SCALE * 50 * 6 )traversal();
 	end
 task traversal;
 begin
@@ -121,12 +125,12 @@ task check;  //匹配数据
 begin
 	if (rd_tmp==sd_tmp)
 	begin
-		$display("  (%d) tx = %b and rx = %b is match",num, sd_tmp, rd_tmp);
+		$fdisplay(mfs,"  (%d) tx = %b and rx = %b is match",num, sd_tmp, rd_tmp);
 		msum = msum + 1;
 	end
 	else
 	begin
-		$display("error : (%d) tx = %b and rx = %b isn't match!!!",num, sd_tmp, rd_tmp);
+		$fdisplay(umfs,"error : (%d) tx = %b and rx = %b isn't match!!!",num, sd_tmp, rd_tmp);
 		umsum = umsum + 1; 
 	end
 end
@@ -134,12 +138,17 @@ endtask
 
 initial
 	begin
-		$monitor($time,,,"tx=%b rx=%b", sd_tmp, rd_tmp);
+		$fmonitor(mlog,$time,,,"tx=%b rx=%b", sd_tmp, rd_tmp);
 		
 		# (max * 50 * SXRX_SCALE) begin 	
-				$display("Test successfully \n Report : \n unmatch sum = %d  \n match sum = %d ", umsum, msum);
-				$finish;
+				$fdisplay(mlog,"Test successfully \n Report : \n unmatch sum = %d  \n match sum = %d ", umsum, msum);
 				end
+			
+		#SXRX_SCALE begin 
+					$fclose(mfs);
+					$fclose(umfs);
+					$fclose(mlog);
+					$finish; end
 
 	end
 
