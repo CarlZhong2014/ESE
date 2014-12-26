@@ -59,24 +59,6 @@ begin
 		end
 end
 endtask
-task ramsim;					//产生随机激励
-	output[7:0] data;
-	reg[1:0] high_data, mid_data, low_data;
-begin
-    begin
-	    high_data = {$random} % 3;	//百位
-		if(high_data==2)
-			mid_data = {$random} % 6;//十位
-	    else
-            mid_data = {$random} % 10;//十位	  
-		if(high_data==2&mid_data==5)
-            low_data = {$random} % 6;//个位
-		else 
-            low_data = {$random} % 10;//个位		 
-		data = {high_data,mid_data, low_data};
-	    end
-end
-endtask
 
 task ransim;					//产生随机激励
 	output[7:0] data;
