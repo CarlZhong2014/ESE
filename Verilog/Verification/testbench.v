@@ -6,7 +6,7 @@ wire rs_rx;						//接收数据
 parameter  CLOCK_PERIOD = 20;	//最小时钟周期50MHz
 parameter  SXRX_SCALE = 104167; //设置波特率
 reg [7:0]sd_tmp,rd_tmp;		//等待发送的数据和接收的数据 
-integer num,msum,umsum;			//计数和设定随机激励个数变量。
+integer num;		//计数和设定随机激励个数变量。
 reg ren;						//接收使能端
 integer mfs,umfs,mlog;
 
@@ -29,8 +29,6 @@ initial 						//初始化
 		#(CLOCK_PERIOD*1) Ret_n = 1;
 		rs_tx = 1;
 		ren = 1'b0;
-		umsum = 0;
-		msum = 0 ;
 		mfs=$fopen("mfs.txt");
 		umfs=$fopen("umfs.txt");
 		mlog=$fopen("mlog.txt");
