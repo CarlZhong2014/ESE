@@ -46,7 +46,6 @@ Cl Vout gnd 5p
 
 V0 vdd gnd dc 5
 v1 Vn Vout 0
-.option list node post
 v2 Vp gnd pwl 0 0 20m 0 20.1m 1.2
 
 .tran 1n 30m

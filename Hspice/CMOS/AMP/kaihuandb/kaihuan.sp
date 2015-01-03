@@ -43,15 +43,15 @@ Cc Vout net20 2p
 Cl Vout gnd 5p 
 ************Circuit End
 
-R1 Vout Vn 1g
+R1 Vout Vn 1g 								**Vout和Vn之间加1G欧姆电阻
 
-C2 Vn gnd 1
+C2 Vn gnd 1 								**Vn和gnd之间加1F电容
 
-v1 vdd gnd dc 5
+v1 vdd gnd dc 5 							** vdd为5V直流电压源
 
-V2 Vp gnd 1.2 ac=1
+V2 Vp gnd 1.2 ac=1 							** Vp接1.2V交流电压源
 
-.ac dec 10 0.01 10000meg
+.ac dec 10 0.01 10000meg					**ac 交流分析 对频率进行扫描  DEC十进制变量，变量按10个为一组的数量级进行扫描
 .print ac vdb(Vout,Vp) vp(Vout,Vp)
 
 .end

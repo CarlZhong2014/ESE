@@ -44,14 +44,14 @@ Cc Vout net20 2p
 Cl Vout gnd 5p 
 ************Circuit End
 
-V1 vdd gnd dc 5
-R1 Vn Va 100k
-R2 Vn Vout 4500k
-V2 Va gnd sin 1.2 80m 1k 0
+V1 vdd gnd dc 5 			**Vdd接5V直流电压源
+R1 Vn Va 100k				**在Vn和Va之间加100k欧姆电阻
+R2 Vn Vout 4500k			**在Vn和Vout之间加入4500k欧姆电阻
+V2 Va gnd sin 1.2 80m 1k 0  **Va接幅度为80mV，频率为1kHz，直流偏置为1.2V的正弦交流电。
 
-V3 Vp gnd 1.2 
-.tran 1u 10m
-.print i(*)
+V3 Vp gnd 1.2 				**Vp接1.2V直流电压源
+.tran 1u 10m				**瞬态分析，仿真10mS，1uS为步长。
+.print i(*)					**格式：.print antype var  (antype = DC, AC , TRAN) (var是变量列表)
 .alter
 V2 Va gnd sin 1.2 30m 1k 0
 

@@ -44,10 +44,10 @@ Cc Vout net20 2p
 Cl Vout gnd 5p 
 ************Circuit End
 
-R1 Vn Vout 0
-V2 Vp gnd  1.2
-V3 Vdd gnd dc 5
-.dc V3 0 5 0.1
+R1 Vn Vout 0 				**Vn和Vout相连
+V2 Vp gnd  1.2 				**Vp 加1.2V直流电压源
+V3 Vdd gnd dc 5 			** Vdd加5V直流电压源
+.dc V3 0 5 0.1 				** 直流扫描。将V3从0V以步长为0.1加到5V
 
 .print v(*)
 

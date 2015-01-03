@@ -44,9 +44,9 @@ Cc Vout net20 2p
 Cl Vout gnd 5p 
 ************Circuit End
 
-v1 vdd gnd pwl 0 0 1m 5
-v2 vp gnd 1.2 ac=1
-v3 vn gnd 1.2 ac=1
+v1 vdd gnd pwl 0 0 1m 5 	**分段线性源vdd在0ns时为0V 1ms时为5V
+v2 vp gnd 1.2 ac=1 			**交流源
+v3 vn gnd 1.2 ac=1 			**交流源
 
 .tran 1u 10m
 .print v(*)

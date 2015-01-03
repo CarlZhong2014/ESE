@@ -44,11 +44,9 @@ Cc Vout net20 2p
 Cl Vout gnd 5p 
 ************Circuit End
 
-V3 Vn Vp 0
-V1 vdd gnd dc 5
-V2 Vp gnd 1.2 ac=1
-.ac dec 10 0.01 10000meg
-.print ac vdb(Vout,Vp)
-
-.print i(*)
+V3 Vn Vp 0 						**将Vn和Vp相连
+V1 vdd gnd dc 5 				**vdd为5v直流电压
+V2 Vp gnd 1.2 ac=1 				**表示用来做小信号分析
+.ac dec 10 0.01 10000meg		**ac 交流分析 对频率进行扫描  DEC十进制变量，变量按10个为一组的数量级进行扫描
+.print ac vdb(Vout,Vp)			**交流分析输出。
 .end

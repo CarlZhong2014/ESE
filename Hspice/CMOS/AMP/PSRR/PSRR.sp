@@ -48,5 +48,5 @@ R1 Vout Vn 0
 V1 vdd gnd dc 5 ac =1
 V2 Vp gnd 1 
 .ac dec 10 0.01 10000meg
-.print ac vdb(Vout£¬Vdd )
+.print ac vdb(Vout,Vdd )
 .end
