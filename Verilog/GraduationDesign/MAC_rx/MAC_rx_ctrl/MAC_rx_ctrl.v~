@@ -53,7 +53,7 @@ end
 always@(RESET or CurStat)
 begin
     case (CurStat)
-//----当CRS_DV有效且HFBYTE为非0x5时，转入前导码态。否则继续等待。----
+	 //当CRS_DV有效且收到的半个字节数据为非0x5时，转入前导码态。否则继续等待。
         SRevIdle:
             begin
                 if((CRS_DV)&&(HFBYTE!=4'H5))
@@ -61,8 +61,7 @@ begin
                 else
                     NextStat<=SRevIdle;
             end
-//----当CRS_DV有效且HFBYTE为0x5时，转入定界符态，否则保持前导码态。----
-        SRevPre:
+		  SRevPre:
             begin
                 if(~CRS_DV)
                     NextStat<=SRevDrop;
@@ -72,9 +71,7 @@ begin
                     else
                         NextStat<=SRevPre;
             end
-//-----当CRS_DV有效且HFBYTE为0xD时，转入接收目的地址状态，否则保持定界符态。----
-	SRevSFD:
-            begin
+		  SRevSFD:
                 if(~CRS_DV)
                     NextStat<=SRevDrop;
                 else
@@ -83,9 +80,7 @@ begin
                     else
                         NextStat<=SRevSFD;
             end
-//
-	SRevDA:
-            begin
+		  SRevDA:
                 if((~CRS_DV)||(DAerr))
                     NextStat<=SRevDrop;
                 else
@@ -94,8 +89,7 @@ begin
                     else
                         NextStat<=SRevDA;
             end
-	SRevSA:
-            begin
+		  SRevSA:
                 if(~CRS_DV)
                     NextStat<=SRevDrop;
                 else
@@ -104,14 +98,14 @@ begin
                     else
                         NextStat<=SRevSA;
             end
-	SRevLD:
+		  SRevLD:
             begin
                 if( (~CRS_DV)||( (~CRS_DV)&&(NBTCNT<12'd128)))
                     NextStat<=SRevDrop;
                 else
                     NextStat<=SRevHD;
             end
-	SRevHD:
+		  SRevHD:
             begin
                 if( (NBTCNT>12'd3036)||( (~CRS_DV)&&(NBTCNT<12'd128)))
                     NextStat<=SRevDrop;
@@ -120,7 +114,7 @@ begin
 					 else
                     NextStat<=SRevCRC;
             end
-	SRevCRC:
+		  SRevCRC:
             begin
                 if((CRCY)
                     NextStat<=SRevSplist;
@@ -141,7 +135,7 @@ begin
                 else
                     NextStat<=SRevDrop;
             end
-	default:
+		  default:
             begin
                 NextStat<=SRevDrop;
             end
